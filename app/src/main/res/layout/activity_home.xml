@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="153dp"
+        android:layout_height="736dp"
+        android:background="#7A03A9F4"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="1dp">
+
+        <Button
+            android:id="@+id/btnProductos"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="12dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="53dp"
+            android:background="#033E6E"
+            android:text="Productos"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnPedXSustir"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btnProductos"
+            android:layout_marginEnd="14dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:background="#033E6E"
+            android:text="Pedidos X Surtir"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnHistorico"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btnPedXSustir"
+            android:layout_marginEnd="14dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="29dp"
+            android:background="#033E6E"
+            android:text="Historico de Pedidos"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="278dp"
+        android:layout_height="742dp"
+        android:background="#5EFFC107"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Painal Proveedores" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
