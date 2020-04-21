@@ -1,17 +1,19 @@
-package com.sienrgitec.painaniprov;
+package com.sienrgitec.painaniprov.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,96 +23,53 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.sienrgitec.painaniprov.R;
+import com.sienrgitec.painaniprov.adapter.ArtProveedorAdapter;
 import com.sienrgitec.painaniprov.config.Globales;
-import com.sienrgitec.painaniprov.model.ctUsuario;
+import com.sienrgitec.painaniprov.model.ctArtProveedor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class ArticulosActivity extends AppCompatActivity {
 
-    private EditText  txtUsuario;
-    private EditText txtPassword;
-    private Button  btnAceptar;
-
-    private Globales globales;
+    public Globales globales;
 
     private static RequestQueue mRequestQueue;
     private String url = globales.URL;
 
+    private ListView lvArticulo;
+    private ArtProveedorAdapter adapter;
+    private List<ctArtProveedor> listaCtArtProveedor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_articulos);
 
 
-        btnAceptar   = (Button)   findViewById(R.id.btnAceptar);
-        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
-        txtPassword = (EditText) findViewById(R.id.txtPassword);
-
-
-        btnAceptar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ValidaUsuario();
-            }
-        });
+        lvArticulo = (ListView) findViewById(R.id.lvArticulos);
+        listaCtArtProveedor = new ArrayList<ctArtProveedor>();
 
 
 
-
-
-
+        cargaArticulos(1);
 
 
     }
 
-    private void ValidaUsuario() {        
-
-        final String vcUsuario = txtUsuario.getText().toString();
-        final String vcPassword = txtPassword.getText().toString();
-
-        if (txtUsuario.getText().toString().isEmpty()) {
-            AlertDialog.Builder myBuild = new AlertDialog.Builder(this);
-            myBuild.setMessage("No se capturo el nombre de usuario");
-            myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR </font>"));
-            myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-
-
-                }
-            });
-            AlertDialog dialog = myBuild.create();
-            dialog.show();
-            return;
-        }
-
-
-        if (txtPassword.getText().toString().isEmpty()) {
-            AlertDialog.Builder myBuild = new AlertDialog.Builder(this);
-            myBuild.setMessage("No se capturo el password del usuario");
-            myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR </font>"));
-            myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                   // btnEntrar.setEnabled(true);
-
-                }
-            });
-            AlertDialog dialog = myBuild.create();
-            dialog.show();
-            return;
-        }
+    public void cargaArticulos(int ipiProveedor ){
 
         getmRequestQueue();
-        String urlParams = String.format(url + "login?ipcUsuario=%1$s&ipcPassword=%2$s", vcUsuario, vcPassword );
+        String urlParams = String.format(url + "ctArtProveedor?ipiProveedor=" + ipiProveedor);
+
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
@@ -122,36 +81,25 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject respuesta = response.getJSONObject("response");
                             Log.i("respuesta--->", respuesta.toString());
 
-                            String Mensaje = respuesta.getString("opcError");
+
+                            String Mensaje = respuesta.getString("opcMensaje");
                             Boolean Error = respuesta.getBoolean("oplError");
-                            JSONObject ds_ctUsuario = respuesta.getJSONObject("tt_ctUsuario");
+                            JSONObject ds_ctArtProveedor = respuesta.getJSONObject("tt_ctArtProveedor");
 
-                            JSONArray tt_ctUsuario  = ds_ctUsuario.getJSONArray("tt_ctUsuario");
+                            JSONArray tt_ctArtProveedor  = ds_ctArtProveedor.getJSONArray("tt_ctArtProveedor");
 
-                            //globales.g_ctUsuarioList     = Arrays.asList(new Gson().fromJson(tt_ctUsuario.toString(), ctUsuario[].class));
+                            listaCtArtProveedor = Arrays.asList(new Gson().fromJson(tt_ctArtProveedor.toString(), ctArtProveedor[].class));
 
+                            ArrayList<ctArtProveedor> ArrayCtArtProveedor = new ArrayList<ctArtProveedor>(listaCtArtProveedor);
 
-                            if (Error == true) {
-
-                                MuestraMensaje("Error", Mensaje);
-                                return;
-
-                            } else {
+                            adapter = new ArtProveedorAdapter(ArticulosActivity.this, (ArrayList<ctArtProveedor>) ArrayCtArtProveedor);
+                            lvArticulo.setAdapter(adapter);
 
 
-                        /*        for (ctUsuario objUsuario: globales.g_ctUsuarioList) {
-                                    globales.g_ctUsuario = objUsuario;
 
-                                }
-
-                                // MuestraMensaje("Aviso", "Bienvenido");
-                                startActivity(new Intent(Login.this, Home.class));
-                                finish();*/
-
-                            }
                         } catch (JSONException e) {
 
-                            AlertDialog.Builder myBuild = new AlertDialog.Builder(MainActivity.this);
+                            AlertDialog.Builder myBuild = new AlertDialog.Builder(ArticulosActivity.this);
                             myBuild.setMessage("Error en la conversión de Datos. Vuelva a Intentar. " + e);
                             myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR CONVERSION </font>"));
                             myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -172,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // TODO: Handle error
                         Log.i("Error Respuesta", error.toString());
-                        AlertDialog.Builder myBuild = new AlertDialog.Builder(MainActivity.this);
+                        AlertDialog.Builder myBuild = new AlertDialog.Builder(ArticulosActivity.this);
                         myBuild.setMessage("No se pudo conectar con el servidor. Vuelva a Intentar. " + error.toString());
                         myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR RESPUESTA </font>"));
                         myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -189,8 +137,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("ipcUsuario", vcUsuario);
-                params.put("ipcPassword", vcPassword);
+
 
 
                 return params;
@@ -204,16 +151,37 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // Access the RequestQueue through your singleton class.
-
-
         mRequestQueue.add(jsonObjectRequest);
 
 
 
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menuart, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.mnuNuevo:
+                Intent iMenu = new Intent(getApplicationContext(), NewProductoActivity.class);
+                startActivity(iMenu);
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void MuestraMensaje(String vcTitulo,  String vcMensaje){
-        AlertDialog.Builder myBuild = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(ArticulosActivity.this);
         myBuild.setMessage(vcMensaje);
         myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'>" + vcTitulo +"</font>"));
         myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -229,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
         return;
 
     }
-
     public void getmRequestQueue(){
         try{
             if (mRequestQueue == null) {

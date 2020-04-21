@@ -1,6 +1,6 @@
 package com.sienrgitec.painaniprov.model;
 
-public class artProveedor {
+public class ctArtProveedor {
     private Integer iProveedor;
     private Integer iArticulo;
     private String cArticulo;
@@ -19,6 +19,7 @@ public class artProveedor {
     private Object dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
+    private Double dePrecioVta;
     private Object id;
 
 
@@ -164,6 +165,14 @@ public class artProveedor {
 
     public void setcUsuModifica(String cUsuModifica) {
         this.cUsuModifica = cUsuModifica;
+    }
+
+    public Double getDePrecioVta() {
+        return dePrecioVta;
+    }
+
+    public void setDePrecioVta(Double dePrecioVta) {
+        this.dePrecioVta = dePrecioVta;
     }
 
     public Object getId() {

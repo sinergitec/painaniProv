@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtArticulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Articulo"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripcion"
+            android:textColor="#090909"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPrecioVta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="precio"
+            android:textColor="#083559"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/textFinal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="#535353"      />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
