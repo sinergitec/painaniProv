@@ -83,4 +83,11 @@ public class ctCategoriaProv {
     public void setId(Object id) {
         this.id = id;
     }
+
+
+    //to display object as a string in spinner
+    @Override
+    public String toString() {
+        return this.cCategoria;
+    }
 }

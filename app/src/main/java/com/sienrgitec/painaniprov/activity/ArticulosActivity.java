@@ -27,6 +27,9 @@ import com.sienrgitec.painaniprov.R;
 import com.sienrgitec.painaniprov.adapter.ArtProveedorAdapter;
 import com.sienrgitec.painaniprov.config.Globales;
 import com.sienrgitec.painaniprov.model.ctArtProveedor;
+import com.sienrgitec.painaniprov.model.ctCategoriaProv;
+import com.sienrgitec.painaniprov.model.ctMarca;
+import com.sienrgitec.painaniprov.model.ctSubCategoriaProv;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,7 +62,7 @@ public class ArticulosActivity extends AppCompatActivity {
         listaCtArtProveedor = new ArrayList<ctArtProveedor>();
 
 
-
+        cargaCategorias(1);
         cargaArticulos(1);
 
 
@@ -155,6 +158,106 @@ public class ArticulosActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    public void cargaCategorias(int ipiProveedor){
+        getmRequestQueue();
+        String urlParams = String.format(url + "ctCategoriaProv?ipiProveedor=" + ipiProveedor);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            JSONObject respuesta = response.getJSONObject("response");
+                            Log.i("respuesta--->", respuesta.toString());
+
+
+                            String Mensaje = respuesta.getString("opcMensaje");
+                            Boolean Error = respuesta.getBoolean("oplError");
+
+
+                            JSONObject ds_tt_ctCategoriaProv   = respuesta.getJSONObject("tt_ctCategoriaProv");
+                            JSONObject ds_tt_ctSubCategoriaProv = respuesta.getJSONObject("tt_ctSubCategoriaProv");
+                            JSONObject ds_tt_ctMarca            = respuesta.getJSONObject("tt_ctMarca");
+
+
+                            JSONArray tt_ctCategoriaProv     = ds_tt_ctCategoriaProv.getJSONArray("tt_ctCategoriaProv");
+                            JSONArray tt_ctSubCategoriaProv  = ds_tt_ctSubCategoriaProv.getJSONArray("tt_ctSubCategoriaProv");
+                            JSONArray tt_ctMarca             = ds_tt_ctMarca.getJSONArray("tt_ctMarca");
+
+                            globales.g_ctCategoriaProv = Arrays.asList(new Gson().fromJson(tt_ctCategoriaProv.toString(), ctCategoriaProv[].class));
+                            globales.g_ctSubCategoriaProv = Arrays.asList(new Gson().fromJson(tt_ctSubCategoriaProv.toString(), ctSubCategoriaProv[].class));
+                            globales.g_ctMarca = Arrays.asList(new Gson().fromJson(tt_ctMarca.toString(), ctMarca[].class));
+
+
+
+                            Log.i("marca", String.valueOf(globales.g_ctMarca.size()));
+
+
+
+
+
+
+                        } catch (JSONException e) {
+
+                            AlertDialog.Builder myBuild = new AlertDialog.Builder(ArticulosActivity.this);
+                            myBuild.setMessage("Error en la conversión de Datos. Vuelva a Intentar. " + e);
+                            myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR CONVERSION </font>"));
+                            myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+
+                                }
+                            });
+                            AlertDialog dialog = myBuild.create();
+                            dialog.show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        // TODO: Handle error
+                        Log.i("Error Respuesta", error.toString());
+                        AlertDialog.Builder myBuild = new AlertDialog.Builder(ArticulosActivity.this);
+                        myBuild.setMessage("No se pudo conectar con el servidor. Vuelva a Intentar. " + error.toString());
+                        myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR RESPUESTA </font>"));
+                        myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        AlertDialog dialog = myBuild.create();
+                        dialog.show();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+        };
+        // Access the RequestQueue through your singleton class.
+        mRequestQueue.add(jsonObjectRequest);
     }
 
 

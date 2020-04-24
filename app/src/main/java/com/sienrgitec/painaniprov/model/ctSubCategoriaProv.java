@@ -1,13 +1,14 @@
 package com.sienrgitec.painaniprov.model;
 
-public class ctMarca {
+public class ctSubCategoriaProv {
 
     private Integer iProveedor;
-    private Integer iMarca;
-    private String cMarca;
+    private Integer iCategoria;
+    private Integer iSubCategoria;
+    private String cSubCategoria;
     private Boolean lActivo;
     private Object dtCreado;
-    private Object dtModifcado;
+    private Object dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
     private Object id;
@@ -20,20 +21,28 @@ public class ctMarca {
         this.iProveedor = iProveedor;
     }
 
-    public Integer getiMarca() {
-        return iMarca;
+    public Integer getiCategoria() {
+        return iCategoria;
     }
 
-    public void setiMarca(Integer iMarca) {
-        this.iMarca = iMarca;
+    public void setiCategoria(Integer iCategoria) {
+        this.iCategoria = iCategoria;
     }
 
-    public String getcMarca() {
-        return cMarca;
+    public Integer getiSubCategoria() {
+        return iSubCategoria;
     }
 
-    public void setcMarca(String cMarca) {
-        this.cMarca = cMarca;
+    public void setiSubCategoria(Integer iSubCategoria) {
+        this.iSubCategoria = iSubCategoria;
+    }
+
+    public String getcSubCategoria() {
+        return cSubCategoria;
+    }
+
+    public void setcSubCategoria(String cSubCategoria) {
+        this.cSubCategoria = cSubCategoria;
     }
 
     public Boolean getlActivo() {
@@ -52,12 +61,12 @@ public class ctMarca {
         this.dtCreado = dtCreado;
     }
 
-    public Object getDtModifcado() {
-        return dtModifcado;
+    public Object getDtModificado() {
+        return dtModificado;
     }
 
-    public void setDtModifcado(Object dtModifcado) {
-        this.dtModifcado = dtModifcado;
+    public void setDtModificado(Object dtModificado) {
+        this.dtModificado = dtModificado;
     }
 
     public String getcUsuCrea() {
@@ -84,9 +93,9 @@ public class ctMarca {
         this.id = id;
     }
 
-    //to display object as a string in spinner
+
     @Override
     public String toString() {
-        return this.cMarca;
+        return this.cSubCategoria;
     }
 }
