@@ -24,7 +24,6 @@
         android:layout_marginBottom="92dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/txtPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,10 +34,10 @@
         android:id="@+id/btnAceptar"
         android:layout_width="199dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="240dp"
-        android:layout_marginLeft="104dp"
         android:layout_marginStart="104dp"
-        android:text="Button"
+        android:layout_marginLeft="104dp"
+        android:layout_marginBottom="240dp"
+        android:text="Aceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

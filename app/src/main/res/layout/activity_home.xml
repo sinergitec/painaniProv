@@ -69,20 +69,4 @@
             android:textColor="#FFFFFF" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="278dp"
-        android:layout_height="742dp"
-        android:background="#5EFFC107"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="1dp">
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Painal Proveedores" />
-    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

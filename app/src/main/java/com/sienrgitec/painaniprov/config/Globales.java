@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Globales {
 
-    public static  String  URL = "http://192.168.1.102:8083/painal/rest/painalService/";
+    public static  String  URL = "http://sinergitecdemo.ddns.net:8083/painal/rest/painalService/";
 
     public static List<ctMarca>            g_ctMarca       = null;
     public static List<ctCategoriaProv>    g_ctCategoriaProv       = null;
