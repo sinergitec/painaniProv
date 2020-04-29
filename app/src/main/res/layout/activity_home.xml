@@ -8,81 +8,92 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="153dp"
-        android:layout_height="736dp"
-        android:background="#7A03A9F4"
+        android:layout_width="220dp"
+        android:layout_height="741dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="1dp">
+        tools:layout_editor_absoluteY="-4dp">
 
         <Button
             android:id="@+id/btnProductos"
-            android:layout_width="117dp"
+            android:layout_width="197dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="12dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="53dp"
-            android:background="#033E6E"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:background="@drawable/btn_home_art"
+            android:drawableLeft="@mipmap/ic_productos"
             android:text="Productos"
+
             android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btnPedXSustir"
-            android:layout_width="115dp"
+            android:layout_width="202dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/btnProductos"
-            android:layout_marginEnd="14dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="14dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:background="#033E6E"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+
+            android:background="@drawable/btn_home_ped"
+            android:drawableLeft="@mipmap/ic_pedpendientes"
             android:text="Pedidos X Surtir"
+
             android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btnHistorico"
-            android:layout_width="116dp"
+            android:layout_width="202dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/btnPedXSustir"
-            android:layout_marginEnd="14dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="14dp"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="29dp"
-            android:background="#033E6E"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+
+            android:background="@drawable/btn_home_ter"
+            android:drawableLeft="@mipmap/ic_pedterminados"
             android:text="Historico de Pedidos"
             android:textColor="#FFFFFF" />
+
+
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="278dp"
-        android:layout_height="742dp"
-        android:background="#5EFFC107"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="1dp">
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="141dp"
+        android:layout_height="183dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="162dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginBottom="521dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.192"
+        app:srcCompat="@mipmap/ic_logo" />
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Painal Proveedores" />
-    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

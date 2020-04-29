@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
@@ -97,6 +99,22 @@ public class ArticulosActivity extends AppCompatActivity {
 
                             adapter = new ArtProveedorAdapter(ArticulosActivity.this, (ArrayList<ctArtProveedor>) ArrayCtArtProveedor);
                             lvArticulo.setAdapter(adapter);
+
+                            lvArticulo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                    ctArtProveedor objctArtProv = new ctArtProveedor();
+
+                                    objctArtProv = (ctArtProveedor) adapter.getItem(position);
+
+                                    Log.i("item" , objctArtProv.getcDescripcion());
+
+                                    startActivity(new Intent(ArticulosActivity.this, updateProductoActivity.class));
+                                    finish();
+
+                                }
+                            });
 
 
 
