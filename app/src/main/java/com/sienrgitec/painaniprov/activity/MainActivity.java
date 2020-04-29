@@ -130,18 +130,12 @@ public class MainActivity extends AppCompatActivity {
                             //globales.g_ctUsuarioList     = Arrays.asList(new Gson().fromJson(tt_ctUsuario.toString(), ctUsuario[].class));
 
 
-
-
                             if (Error == true) {
 
                                 MuestraMensaje("Error", Mensaje);
                                 return;
 
                             } else {
-
-
-
-
 
                                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                 finish();
