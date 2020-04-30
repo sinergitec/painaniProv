@@ -21,8 +21,15 @@
 
         </activity>
         <activity android:name=".activity.pedidohistoricoActivity" />
-        <activity android:name=".activity.pedidodetalleActivity" />
-        <activity android:name=".activity.pedidoenviarActivity" />
+        <activity android:name=".activity.pedidodetalleActivity"
+            android:label="Detalle">
+
+        </activity>
+
+        <activity android:name=".activity.pedidoenviarActivity"
+            android:label="Pedidos Pedientes" >
+
+        </activity>
         <activity android:name=".activity.updateProductoActivity" />
         <activity android:name=".activity.viewProductoActivity" />
         <activity

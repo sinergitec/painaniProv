@@ -57,6 +57,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void MenuXSurtir() {
+
+        startActivity(new Intent(HomeActivity.this ,pedidoenviarActivity.class) );
     }
 
     private void MenuProducto() {

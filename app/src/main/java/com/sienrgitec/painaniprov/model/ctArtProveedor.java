@@ -22,7 +22,6 @@ public class ctArtProveedor {
     private Double dePrecioVta;
     private Object id;
 
-
     public Integer getiProveedor() {
         return iProveedor;
     }

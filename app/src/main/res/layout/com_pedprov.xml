@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/lblPedido"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:text="Pedido:"
+                android:textIsSelectable="true" />
+
+            <EditText
+                android:id="@+id/textPedido"
+                android:layout_width="149dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="99999"
+                android:textIsSelectable="true"
+                android:focusable="false"    />
+
+            <EditText
+                android:id="@+id/textFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="99/99/9999"
+                android:textIsSelectable="true"
+                android:focusable="false"   />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/textPza"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Pza"
+                android:textIsSelectable="true"
+                android:focusable="false"/>
+
+            <EditText
+                android:id="@+id/textTotal"
+                android:layout_width="106dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Total"
+                android:textIsSelectable="true"
+                android:focusable="false"/>
+
+            <EditText
+                android:id="@+id/textHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Hora"
+                android:textIsSelectable="true"
+                android:focusable="false"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <View
+        android:id="@+id/textFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_margin="3dp"
+        android:background="@color/colorPrimary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
