@@ -16,16 +16,17 @@ public class ctProveedor {
     private String cFacebook;
     private Integer iEstadoProv;
     private Boolean lSucursales;
+    private Integer iNivelClasifica;
     private Boolean lSistema;
     private String cSistema;
     private String cObs;
-    private Object dtAfiliacion;
-    private Object dtCreado;
+    private Integer iUnidad;
+    private String dtAfiliacion;
+    private String dtCreado;
     private Object dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
     private Object id;
-
 
     public Integer getiProveedor() {
         return iProveedor;
@@ -139,6 +140,14 @@ public class ctProveedor {
         this.lSucursales = lSucursales;
     }
 
+    public Integer getiNivelClasifica() {
+        return iNivelClasifica;
+    }
+
+    public void setiNivelClasifica(Integer iNivelClasifica) {
+        this.iNivelClasifica = iNivelClasifica;
+    }
+
     public Boolean getlSistema() {
         return lSistema;
     }
@@ -163,19 +172,27 @@ public class ctProveedor {
         this.cObs = cObs;
     }
 
-    public Object getDtAfiliacion() {
+    public Integer getiUnidad() {
+        return iUnidad;
+    }
+
+    public void setiUnidad(Integer iUnidad) {
+        this.iUnidad = iUnidad;
+    }
+
+    public String getDtAfiliacion() {
         return dtAfiliacion;
     }
 
-    public void setDtAfiliacion(Object dtAfiliacion) {
+    public void setDtAfiliacion(String dtAfiliacion) {
         this.dtAfiliacion = dtAfiliacion;
     }
 
-    public Object getDtCreado() {
+    public String getDtCreado() {
         return dtCreado;
     }
 
-    public void setDtCreado(Object dtCreado) {
+    public void setDtCreado(String dtCreado) {
         this.dtCreado = dtCreado;
     }
 

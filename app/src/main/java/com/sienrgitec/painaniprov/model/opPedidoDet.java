@@ -1,7 +1,6 @@
 package com.sienrgitec.painaniprov.model;
 
 public class opPedidoDet {
-
     private Integer iPedido;
     private Integer iPedidoProv;
     private Integer iPartida;
@@ -10,6 +9,8 @@ public class opPedidoDet {
     private String cArticulo;
     private String cDescripcion;
     private String cObs;
+    private Boolean lPesado;
+    private Integer iUMedida;
     private Integer dePrecio;
     private Integer dePorcImp;
     private Integer deImpuesto;
@@ -28,7 +29,6 @@ public class opPedidoDet {
     private String cUsuCrea;
     private String cUsuModificado;
     private Object id;
-
 
     public Integer getiPedido() {
         return iPedido;
@@ -92,6 +92,22 @@ public class opPedidoDet {
 
     public void setcObs(String cObs) {
         this.cObs = cObs;
+    }
+
+    public Boolean getlPesado() {
+        return lPesado;
+    }
+
+    public void setlPesado(Boolean lPesado) {
+        this.lPesado = lPesado;
+    }
+
+    public Integer getiUMedida() {
+        return iUMedida;
+    }
+
+    public void setiUMedida(Integer iUMedida) {
+        this.iUMedida = iUMedida;
     }
 
     public Integer getDePrecio() {

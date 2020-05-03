@@ -2,6 +2,7 @@ package com.sienrgitec.painaniprov.model;
 
 public class opPedidoProveedor {
 
+
     private Integer iPedido;
     private Integer iPedidoProv;
     private Integer iProveedor;
@@ -26,12 +27,14 @@ public class opPedidoProveedor {
     private Integer iRazon;
     private Boolean lEntregado;
     private String dtEntregado;
+    private Object dtSurtido;
+    private Integer dePesoTotal;
+    private Integer deVolTotal;
     private String dtCreado;
     private String dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
     private Object id;
-
 
     public Integer getiPedido() {
         return iPedido;
@@ -223,6 +226,30 @@ public class opPedidoProveedor {
 
     public void setDtEntregado(String dtEntregado) {
         this.dtEntregado = dtEntregado;
+    }
+
+    public Object getDtSurtido() {
+        return dtSurtido;
+    }
+
+    public void setDtSurtido(Object dtSurtido) {
+        this.dtSurtido = dtSurtido;
+    }
+
+    public Integer getDePesoTotal() {
+        return dePesoTotal;
+    }
+
+    public void setDePesoTotal(Integer dePesoTotal) {
+        this.dePesoTotal = dePesoTotal;
+    }
+
+    public Integer getDeVolTotal() {
+        return deVolTotal;
+    }
+
+    public void setDeVolTotal(Integer deVolTotal) {
+        this.deVolTotal = deVolTotal;
     }
 
     public String getDtCreado() {

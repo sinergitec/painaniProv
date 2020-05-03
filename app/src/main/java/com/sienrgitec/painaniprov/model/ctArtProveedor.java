@@ -15,11 +15,23 @@ public class ctArtProveedor {
     private Integer iMarca;
     private Boolean lActivo;
     private Object bImagen;
-    private Object dtCreado;
-    private Object dtModificado;
+    private Integer dePeso;
+    private Boolean deLargo;
+    private Integer deAncho;
+    private Integer deProfundo;
+    private String dtCreado;
+    private String dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
-    private Double dePrecioVta;
+    private Integer dePrecioVtaPza;
+    private Integer dePrecioVtaGranel;
+    private Integer iUMedida;
+    private String cUnidadM;
+    private String cMarca;
+    private String cCategoria;
+    private String cSubCategoria;
+    private String cClasificacion;
+    private String cSubClasificacion;
     private Object id;
 
     public Integer getiProveedor() {
@@ -134,19 +146,51 @@ public class ctArtProveedor {
         this.bImagen = bImagen;
     }
 
-    public Object getDtCreado() {
+    public Integer getDePeso() {
+        return dePeso;
+    }
+
+    public void setDePeso(Integer dePeso) {
+        this.dePeso = dePeso;
+    }
+
+    public Boolean getDeLargo() {
+        return deLargo;
+    }
+
+    public void setDeLargo(Boolean deLargo) {
+        this.deLargo = deLargo;
+    }
+
+    public Integer getDeAncho() {
+        return deAncho;
+    }
+
+    public void setDeAncho(Integer deAncho) {
+        this.deAncho = deAncho;
+    }
+
+    public Integer getDeProfundo() {
+        return deProfundo;
+    }
+
+    public void setDeProfundo(Integer deProfundo) {
+        this.deProfundo = deProfundo;
+    }
+
+    public String getDtCreado() {
         return dtCreado;
     }
 
-    public void setDtCreado(Object dtCreado) {
+    public void setDtCreado(String dtCreado) {
         this.dtCreado = dtCreado;
     }
 
-    public Object getDtModificado() {
+    public String getDtModificado() {
         return dtModificado;
     }
 
-    public void setDtModificado(Object dtModificado) {
+    public void setDtModificado(String dtModificado) {
         this.dtModificado = dtModificado;
     }
 
@@ -166,12 +210,76 @@ public class ctArtProveedor {
         this.cUsuModifica = cUsuModifica;
     }
 
-    public Double getDePrecioVta() {
-        return dePrecioVta;
+    public Integer getDePrecioVtaPza() {
+        return dePrecioVtaPza;
     }
 
-    public void setDePrecioVta(Double dePrecioVta) {
-        this.dePrecioVta = dePrecioVta;
+    public void setDePrecioVtaPza(Integer dePrecioVtaPza) {
+        this.dePrecioVtaPza = dePrecioVtaPza;
+    }
+
+    public Integer getDePrecioVtaGranel() {
+        return dePrecioVtaGranel;
+    }
+
+    public void setDePrecioVtaGranel(Integer dePrecioVtaGranel) {
+        this.dePrecioVtaGranel = dePrecioVtaGranel;
+    }
+
+    public Integer getiUMedida() {
+        return iUMedida;
+    }
+
+    public void setiUMedida(Integer iUMedida) {
+        this.iUMedida = iUMedida;
+    }
+
+    public String getcUnidadM() {
+        return cUnidadM;
+    }
+
+    public void setcUnidadM(String cUnidadM) {
+        this.cUnidadM = cUnidadM;
+    }
+
+    public String getcMarca() {
+        return cMarca;
+    }
+
+    public void setcMarca(String cMarca) {
+        this.cMarca = cMarca;
+    }
+
+    public String getcCategoria() {
+        return cCategoria;
+    }
+
+    public void setcCategoria(String cCategoria) {
+        this.cCategoria = cCategoria;
+    }
+
+    public String getcSubCategoria() {
+        return cSubCategoria;
+    }
+
+    public void setcSubCategoria(String cSubCategoria) {
+        this.cSubCategoria = cSubCategoria;
+    }
+
+    public String getcClasificacion() {
+        return cClasificacion;
+    }
+
+    public void setcClasificacion(String cClasificacion) {
+        this.cClasificacion = cClasificacion;
+    }
+
+    public String getcSubClasificacion() {
+        return cSubClasificacion;
+    }
+
+    public void setcSubClasificacion(String cSubClasificacion) {
+        this.cSubClasificacion = cSubClasificacion;
     }
 
     public Object getId() {
