@@ -9,7 +9,7 @@ public class opPedidoProveedor {
     private String dtFecha;
     private Integer iHora;
     private Integer iDomicilio;
-    private Integer deTotalPzas;
+    private Double deTotalPzas;
     private Integer deSubTotal;
     private Integer deImpuesto;
     private Integer deImporte;
@@ -84,11 +84,11 @@ public class opPedidoProveedor {
         this.iDomicilio = iDomicilio;
     }
 
-    public Integer getDeTotalPzas() {
+    public Double getDeTotalPzas() {
         return deTotalPzas;
     }
 
-    public void setDeTotalPzas(Integer deTotalPzas) {
+    public void setDeTotalPzas(Double deTotalPzas) {
         this.deTotalPzas = deTotalPzas;
     }
 

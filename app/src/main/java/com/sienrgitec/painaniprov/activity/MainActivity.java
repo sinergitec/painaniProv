@@ -21,26 +21,34 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.sienrgitec.painaniprov.R;
 import com.sienrgitec.painaniprov.config.Globales;
+import com.sienrgitec.painaniprov.model.ctProveedor;
+import com.sienrgitec.painaniprov.model.ctUsuario;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText  txtUsuario;
+    private EditText txtUsuario;
     private EditText txtPassword;
-    private Button  btnAceptar;
+    private Button btnAceptar;
 
     private Globales globales;
 
     private static RequestQueue mRequestQueue;
     private String url = globales.URL;
+
+    private List<ctUsuario> listUsuario;
+    private List<ctProveedor> listProveedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        btnAceptar   = (Button)   findViewById(R.id.btnAceptar);
+        btnAceptar = (Button) findViewById(R.id.btnAceptar);
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
 
@@ -60,15 +68,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
     }
 
-    private void ValidaUsuario() {        
+    private void ValidaUsuario() {
 
         final String vcUsuario = txtUsuario.getText().toString();
         final String vcPassword = txtPassword.getText().toString();
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
-                   // btnEntrar.setEnabled(true);
+                    // btnEntrar.setEnabled(true);
 
                 }
             });
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         getmRequestQueue();
-        String urlParams = String.format(url + "login?ipcUsuario=%1$s&ipcPassword=%2$s", vcUsuario, vcPassword );
+        String urlParams = String.format(url + "PwordProv?ipcEmail=%1$s&ipcPersona=%2$s", vcUsuario, "Proveedor");
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
@@ -124,10 +126,22 @@ public class MainActivity extends AppCompatActivity {
                             String Mensaje = respuesta.getString("opcError");
                             Boolean Error = respuesta.getBoolean("oplError");
                             JSONObject ds_ctUsuario = respuesta.getJSONObject("tt_ctUsuario");
+                            JSONObject ds_ctProveedor = respuesta.getJSONObject("tt_ctProveedor");
 
-                            JSONArray tt_ctUsuario  = ds_ctUsuario.getJSONArray("tt_ctUsuario");
+                            JSONArray tt_ctUsuario = ds_ctUsuario.getJSONArray("tt_ctUsuario");
+                            JSONArray tt_ctProveedor = ds_ctProveedor.getJSONArray("tt_ctProveedor");
 
-                            //globales.g_ctUsuarioList     = Arrays.asList(new Gson().fromJson(tt_ctUsuario.toString(), ctUsuario[].class));
+
+                            listUsuario = Arrays.asList(new Gson().fromJson(tt_ctUsuario.toString(), ctUsuario[].class));
+                            listProveedor = Arrays.asList(new Gson().fromJson(tt_ctProveedor.toString(), ctProveedor[].class));
+
+                            if (! listUsuario.isEmpty()) {
+                                globales.g_ctUsuario = listUsuario.get(0);
+                            }
+                            if (! listProveedor.isEmpty()){
+                                globales.g_ctProveedor = listProveedor.get(0);
+
+                            }
 
 
                             if (Error == true) {
@@ -137,10 +151,28 @@ public class MainActivity extends AppCompatActivity {
 
                             } else {
 
-                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                if (globales.g_ctProveedor == null) {
+                                    MuestraMensaje("Error", "no se encontro datos del proveedor");
+                                    return;
+                                }
+
+                                if (globales.g_ctUsuario == null) {
+                                    MuestraMensaje("Error", "No se encontraron datos del usuario");
+                                    return;
+
+                                }
+
+                                if (!globales.g_ctUsuario.getcPassword().equals(vcPassword)) {
+                                    MuestraMensaje("Error", "el password es incorrecto");
+                                    return;
+                                }
+
+                               startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                 finish();
 
                             }
+
+
                         } catch (JSONException e) {
 
                             AlertDialog.Builder myBuild = new AlertDialog.Builder(MainActivity.this);
@@ -201,13 +233,12 @@ public class MainActivity extends AppCompatActivity {
         mRequestQueue.add(jsonObjectRequest);
 
 
-
     }
 
-    public void MuestraMensaje(String vcTitulo,  String vcMensaje){
+    public void MuestraMensaje(String vcTitulo, String vcMensaje) {
         AlertDialog.Builder myBuild = new AlertDialog.Builder(MainActivity.this);
         myBuild.setMessage(vcMensaje);
-        myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'>" + vcTitulo +"</font>"));
+        myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'>" + vcTitulo + "</font>"));
         myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -222,14 +253,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getmRequestQueue(){
-        try{
+    public void getmRequestQueue() {
+        try {
             if (mRequestQueue == null) {
                 mRequestQueue = Volley.newRequestQueue(getApplicationContext());
                 //your code
             }
-        }catch(Exception e){
-            Log.d("Volley",e.toString());
+        } catch (Exception e) {
+            Log.d("Volley", e.toString());
         }
     }
 

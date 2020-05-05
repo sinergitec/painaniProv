@@ -89,9 +89,16 @@ public class pedidodetalleActivity extends AppCompatActivity {
 
                             lista_detalle = Arrays.asList(new Gson().fromJson(tt_opPedidoDet.toString(), opPedidoDet[].class));
 
+
+
                             ArrayList<opPedidoDet> arrayDetalle = new ArrayList<opPedidoDet>(lista_detalle);
 
                             adapter = new opPedDetAdapter(pedidodetalleActivity.this, (ArrayList<opPedidoDet>) arrayDetalle);
+
+                            for (opPedidoDet obj : arrayDetalle ){
+                                Log.i("arraylist" , obj.getcDescripcion());
+                            }
+
                             lvDetalle.setAdapter(adapter);
 
                             /**lvDetalle.setOnItemClickListener(new AdapterView.OnItemClickListener() {

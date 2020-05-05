@@ -54,10 +54,10 @@ public class ArtProveedorAdapter extends BaseAdapter {
         TextView txtPrecioVta = (TextView) convertView.findViewById(R.id.txtPrecioVta);
 
 
-        String FdePrecivta = new DecimalFormat("0.00").format(lista.get(position).getDePrecioVta());
+       /* String FdePrecivta = new DecimalFormat("0.00").format(lista.get(position).getDePrecioVta());
         SpannableString PrecioVta = new SpannableString(FdePrecivta);
         txtPrecioVta.setText(PrecioVta);
-
+*/
 
         txtArticulo.setText(lista.get(position).getcArticulo().toString());
         txtDescripcion.setText(lista.get(position).getcDescripcion().toString());

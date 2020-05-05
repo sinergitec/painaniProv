@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.sienrgitec.painaniprov.R;
 import com.sienrgitec.painaniprov.adapter.opPedProvAdapter;
 import com.sienrgitec.painaniprov.config.Globales;
+import com.sienrgitec.painaniprov.model.ctProveedor;
 import com.sienrgitec.painaniprov.model.opPedidoProveedor;
 
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class pedidoenviarActivity extends AppCompatActivity {
+public class pedidobandejaActivity extends AppCompatActivity {
 
 
     public Globales globales;
@@ -45,20 +46,23 @@ public class pedidoenviarActivity extends AppCompatActivity {
     private static RequestQueue mRequestQueue;
     private String url = globales.URL;
 
-    private ListView lvPedProv;
+    private ListView lvPedidos;
     private opPedProvAdapter adapter;
     private List<opPedidoProveedor> lista_pedprov;
+    private ctProveedor proveedor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pedidosenviar);
+        setContentView(R.layout.activity_pedidosbandeja);
 
+        proveedor = globales.g_ctProveedor;
 
-        lvPedProv = (ListView) findViewById(R.id.lvPedidos);
+        lvPedidos = (ListView) findViewById(R.id.lvPedidos);
         lista_pedprov = new ArrayList<opPedidoProveedor>();
 
-        getPedidos(11);
+        getPedidos( proveedor.getiProveedor()); //proveedor.getiProveedor());
     }
 
 
@@ -91,12 +95,17 @@ public class pedidoenviarActivity extends AppCompatActivity {
 
                             ArrayList<opPedidoProveedor> arrayPedProv = new ArrayList<opPedidoProveedor>(lista_pedprov);
 
-                            adapter = new opPedProvAdapter(pedidoenviarActivity.this, (ArrayList<opPedidoProveedor>) arrayPedProv);
-                            lvPedProv.setAdapter(adapter);
 
-                            lvPedProv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            adapter = new opPedProvAdapter(pedidobandejaActivity.this, (ArrayList<opPedidoProveedor>) arrayPedProv);
+                            lvPedidos.setAdapter(adapter);
+
+
+/*
+                            lvPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                    Log.i("click" ,"123");
 
                                     opPedidoProveedor objctArtProv = new opPedidoProveedor();
 
@@ -104,7 +113,7 @@ public class pedidoenviarActivity extends AppCompatActivity {
 
                                     Log.i("item" , objctArtProv.getiPedido().toString());
 
-                                    startActivity(new Intent(pedidoenviarActivity.this, pedidodetalleActivity.class));
+                                    startActivity(new Intent(pedidobandejaActivity.this, pedidodetalleActivity.class));
                                     finish();
 
 
@@ -113,11 +122,11 @@ public class pedidoenviarActivity extends AppCompatActivity {
                                 }
                             });
 
-
+*/
 
                         } catch (JSONException e) {
 
-                            AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidoenviarActivity.this);
+                            AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidobandejaActivity.this);
                             myBuild.setMessage("Error en la conversión de Datos. Vuelva a Intentar. " + e);
                             myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR CONVERSION </font>"));
                             myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -138,7 +147,7 @@ public class pedidoenviarActivity extends AppCompatActivity {
 
                         // TODO: Handle error
                         Log.i("Error Respuesta", error.toString());
-                        AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidoenviarActivity.this);
+                        AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidobandejaActivity.this);
                         myBuild.setMessage("No se pudo conectar con el servidor. Vuelva a Intentar. " + error.toString());
                         myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR RESPUESTA </font>"));
                         myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -174,7 +183,7 @@ public class pedidoenviarActivity extends AppCompatActivity {
 
 
     public void MuestraMensaje(String vcTitulo,  String vcMensaje){
-        AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidoenviarActivity.this);
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidobandejaActivity.this);
         myBuild.setMessage(vcMensaje);
         myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'>" + vcTitulo +"</font>"));
         myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {

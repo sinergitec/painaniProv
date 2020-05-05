@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
@@ -54,6 +55,8 @@ public class ArticulosActivity extends AppCompatActivity {
     private ArtProveedorAdapter adapter;
     private List<ctArtProveedor> listaCtArtProveedor;
 
+    private CheckBox cbSelecionar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +67,8 @@ public class ArticulosActivity extends AppCompatActivity {
         listaCtArtProveedor = new ArrayList<ctArtProveedor>();
 
 
-        cargaCategorias(1);
+
+
         cargaArticulos(1);
 
 

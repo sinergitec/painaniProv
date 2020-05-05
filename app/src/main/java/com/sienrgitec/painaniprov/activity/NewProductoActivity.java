@@ -208,7 +208,7 @@ public class NewProductoActivity extends AppCompatActivity {
         objArtProveedor.setDtModificado("");
         objArtProveedor.setcUsuCrea("");
         objArtProveedor.setcUsuModifica("");
-        objArtProveedor.setDePrecioVta(precioVta);
+//        objArtProveedor.setDePrecioVta(precioVta);
         objArtProveedor.setId("");
 
         arrayArtProveedor.add(objArtProveedor);

@@ -26,8 +26,8 @@
 
         </activity>
 
-        <activity android:name=".activity.pedidoenviarActivity"
-            android:label="Pedidos Pedientes" >
+        <activity android:name=".activity.pedidobandejaActivity"
+            android:label="Bandeja pedidos" >
 
         </activity>
         <activity android:name=".activity.updateProductoActivity" />

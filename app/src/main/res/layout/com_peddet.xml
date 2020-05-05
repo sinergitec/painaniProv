@@ -1,65 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TableLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <EditText
+            <TextView
                 android:id="@+id/textNo"
                 android:layout_width="49dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="999" />
+                android:text="999"
+                android:textSize="20sp"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/textArticulo"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Articulo" />
-
-            <EditText
-                android:id="@+id/textCantidad"
+                android:text="Articulo"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/textImporte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="999" />
+                android:text="999.99"
+                android:textSize="20sp"
+                android:textColor="#2196F3"/>
+
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <EditText
+            <TextView
                 android:id="@+id/textDescripcion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+
                 android:text="Descripcion"
-                android:layout_span="3"/>
+                android:layout_span="3"
+                android:textSize="24sp"/>
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/textCantidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="999"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/textPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="999.99"
+                android:textSize="20sp"/>
+
+
+
+        </TableRow>
+
+        <View
+            android:id="@+id/textFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_margin="3dp"
+            android:background="#000000"
+            />
+
+
     </TableLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

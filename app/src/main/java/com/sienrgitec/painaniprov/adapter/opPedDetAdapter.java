@@ -1,15 +1,18 @@
 package com.sienrgitec.painaniprov.adapter;
 
 import android.content.Context;
+import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sienrgitec.painaniprov.R;
 import com.sienrgitec.painaniprov.model.opPedidoDet;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class opPedDetAdapter extends BaseAdapter {
@@ -21,6 +24,8 @@ public class opPedDetAdapter extends BaseAdapter {
         this.context = context;
         this.lista = lista;
     }
+
+
 
     @Override
     public int getCount() {
@@ -46,17 +51,42 @@ public class opPedDetAdapter extends BaseAdapter {
         }
 
 
-        EditText textNo          = (EditText)   convertView.findViewById(R.id.textNo);
-        EditText textArticulo    = (EditText)   convertView.findViewById(R.id.textArticulo);
-        EditText textCantidad    = (EditText)   convertView.findViewById(R.id.textCantidad);
-        EditText textDescripcion = (EditText)   convertView.findViewById(R.id.textDescripcion);
+
+        TextView textNo          = (TextView)   convertView.findViewById(R.id.textNo);
+        TextView textArticulo    = (TextView)   convertView.findViewById(R.id.textArticulo);
+        TextView textCantidad    = (TextView)   convertView.findViewById(R.id.textCantidad);
+        TextView textDescripcion = (TextView)   convertView.findViewById(R.id.textDescripcion);
+        TextView textPrecio      = (TextView)   convertView.findViewById(R.id.textPrecio);
+        TextView textImporte     = (TextView)   convertView.findViewById(R.id.textImporte);
+
+
+
+
+
+         DecimalFormat FDPrecio = new DecimalFormat("00.00");
+        DecimalFormat FDImporte = new DecimalFormat("00.00");
+
+          String  Precio = FDPrecio.format(lista.get(position).getDePrecioVta());
+
+
+           String Importe = FDImporte.format(lista.get(position).getDeImporte());
+
+
+
+
+
+
+
 
 
         textNo.setText(lista.get(position).getiPartida().toString());
         textArticulo.setText(lista.get(position).getcArticulo());
         textCantidad.setText(lista.get(position).getDeCantidad().toString());
         textDescripcion.setText(lista.get(position).getcDescripcion());
+        textPrecio.setText(Precio);
+        textImporte.setText(Importe);
 
+        Log.i("adapter" , lista.get(position).getcDescripcion());
 
         return convertView;
     }
