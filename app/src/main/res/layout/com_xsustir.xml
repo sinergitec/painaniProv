@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/lblPedido"
+                android:layout_width="98dp"
+                android:layout_height="wrap_content"
+                android:text="Pedido:"
+                android:textColor="#2196F3"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textPedido"
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:text="99999"
+                android:textColor="#0B0B0B"
+                android:textSize="24sp" />
+
+
+            <TextView
+                android:id="@+id/textFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99/99/9999"
+                android:textColor="#0B0B0B"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textPza"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+           
+                android:text="Pza"
+                android:textColor="#0B0B0B"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textTotal"
+                android:layout_width="106dp"
+                android:layout_height="wrap_content"
+           
+                android:text="Total"
+                android:textColor="#0B0B0B"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+           
+                android:textColor="#0B0B0B"
+                android:textSize="24sp"
+
+                />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/btnDetalle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Detalle"
+                            android:background="@drawable/boton_redondo"
+                            android:layout_column="0"
+                            android:textColor="#FFFFFF"/>
+
+                        <Button
+                            android:id="@+id/btnSurtir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Surtir"
+                            android:background="@drawable/btn_home_ped"
+                            android:layout_column="2"/>
+            -->
+        </TableRow>
+
+      <View
+            android:id="@+id/textFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_margin="3dp"
+            android:background="#000000"
+            />
+
+    </TableLayout>
+</RelativeLayout>

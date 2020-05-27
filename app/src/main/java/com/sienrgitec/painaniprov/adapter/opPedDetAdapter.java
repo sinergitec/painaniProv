@@ -1,7 +1,6 @@
 package com.sienrgitec.painaniprov.adapter;
 
 import android.content.Context;
-import android.text.SpannableString;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +45,7 @@ public class opPedDetAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.com_peddet, null);
+            convertView = layoutInflater.inflate(R.layout.com_bandejadet, null);
 
         }
 

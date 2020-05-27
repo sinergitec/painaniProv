@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,20 +16,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.MainActivity"
-            android:label="Login">
+
+        <activity android:name=".activity.pedidodethistoricoActivity"
+            android:label="Detalle  Historico" >
 
         </activity>
-        <activity android:name=".activity.pedidohistoricoActivity" />
-        <activity android:name=".activity.pedidodetalleActivity"
-            android:label="Detalle">
-
+        <activity android:name=".activity.pedidodetxsurtirActivity"
+            android:label="Detalle x surtir" >
         </activity>
-
-        <activity android:name=".activity.pedidobandejaActivity"
-            android:label="Bandeja pedidos" >
-
+        <activity android:name=".activity.pedidoxsurtirActivity"
+            android:label="Pedidos x surtir" >
         </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="Login" />
+
+        <activity android:name=".activity.pedidohistoricoActivity"
+            android:label="Historico ">
+        </activity>
+        <activity
+            android:name=".activity.pedidodetbanActivity"
+            android:label="Detalle  Bandeja pedidos" />
+        <activity
+            android:name=".activity.pedidobandejaActivity"
+            android:label="Bandeja pedidos" />
+
         <activity android:name=".activity.updateProductoActivity" />
         <activity android:name=".activity.viewProductoActivity" />
         <activity
@@ -38,9 +49,9 @@
         <activity
             android:name=".activity.ArticulosActivity"
             android:label="Productos" />
-        <activity android:name=".activity.HomeActivity"
-            android:label="Home"></activity>
-
+        <activity
+            android:name=".activity.HomeActivity"
+            android:label="Home" />
         <activity android:name=".config.splash_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +59,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

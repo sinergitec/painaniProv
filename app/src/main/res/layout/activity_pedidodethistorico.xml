@@ -4,16 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.pedidodetbanActivity">
-
-    <ListView
-        android:id="@+id/lvDetalle"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-         />
-
+    tools:context=".activity.pedidodethistoricoActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

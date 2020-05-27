@@ -55,8 +55,6 @@ public class ArticulosActivity extends AppCompatActivity {
     private ArtProveedorAdapter adapter;
     private List<ctArtProveedor> listaCtArtProveedor;
 
-    private CheckBox cbSelecionar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +67,7 @@ public class ArticulosActivity extends AppCompatActivity {
 
 
 
-        cargaArticulos(1);
+        cargaArticulos(globales.g_ctProveedor.getiProveedor());
 
 
     }

@@ -1,6 +1,8 @@
 package com.sienrgitec.painaniprov.model;
 
-public class opPedidoProveedor {
+import java.io.Serializable;
+
+public class opPedidoProveedor  implements Serializable {
 
 
     private Integer iPedido;
@@ -35,6 +37,11 @@ public class opPedidoProveedor {
     private String cUsuCrea;
     private String cUsuModifica;
     private Object id;
+
+
+
+    private static final long serialVersionUID = 1L;
+
 
     public Integer getiPedido() {
         return iPedido;

@@ -1,22 +1,16 @@
-package com.sienrgitec.painaniprov.adapter;
-
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Build;
-import android.text.Html;
-import android.text.SpannableString;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+package com.sienrgitec.painaniprov.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
+import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,144 +21,83 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.sienrgitec.painaniprov.R;
-import com.sienrgitec.painaniprov.activity.pedidobandejaActivity;
-import com.sienrgitec.painaniprov.activity.pedidodetalleActivity;
+import com.sienrgitec.painaniprov.adapter.opPedDetAdapter;
 import com.sienrgitec.painaniprov.config.Globales;
+import com.sienrgitec.painaniprov.model.opPedidoDet;
 import com.sienrgitec.painaniprov.model.opPedidoProveedor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-public class opPedProvAdapter extends BaseAdapter {
+public class pedidodetbanActivity extends AppCompatActivity {
 
 
     public Globales globales;
-    private Context context;
-    private ArrayList<opPedidoProveedor> lista;
+
     private static RequestQueue mRequestQueue;
     private String url = globales.URL;
 
-    public opPedProvAdapter(Context context, ArrayList<opPedidoProveedor> lista) {
-        this.context = context;
-        this.lista = lista;
-    }
+    private ListView lvDetalle;
+    private opPedDetAdapter adapter;
+    private List<opPedidoDet> lista_detalle;
+    private opPedidoProveedor pedido;
 
     @Override
-    public int getCount() {
-        return lista.size();
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pedidodetalle);
 
-    @Override
-    public Object getItem(int position) {
-        return lista.get(position);
-    }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
+        Intent intent = getIntent();
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.com_pedprov, null);
 
+        if (!intent.hasExtra("pedido")) {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(pedidodetbanActivity.this);
+            alert.setTitle(Html.fromHtml("<font color ='#3b83bd'> Informacion </font>"));
+            alert.setMessage("No se encontro en parametro articulo");
+            alert.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+
+                    dialog.cancel();
+                }
+            });
+            AlertDialog dialog = alert.create();
+            dialog.show();
         }
 
-/*
-        TextView textPedido = (TextView)   convertView.findViewById(R.id.textPedido);
-        TextView  textFecha = (TextView)   convertView.findViewById(R.id.textFecha);
-        TextView  textxtPza   = (TextView)  convertView.findViewById(R.id.textPza);
-        TextView  textTotal   = (TextView) convertView.findViewById(R.id.textTotal) ;
-        TextView  textHora   = (TextView) convertView.findViewById(R.id.textHora) ;
-        Button btnDetalle = (Button) convertView.findViewById(R.id.btnDetalle);
-        Button btnAceptar = (Button) convertView.findViewById(R.id.btnAceptar);
 
-        int millis = lista.get(position).getiHora() / 1000;
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-        String time = df.format(millis);
+        pedido = (opPedidoProveedor) intent.getSerializableExtra("pedido");
+
+
+        Log.i("direc", pedido.toString());
 
 
 
+        lvDetalle = (ListView) findViewById(R.id.lvDetalle);
+        lista_detalle = new ArrayList<opPedidoDet>();
 
-        String FormatTotal = new DecimalFormat("00.00").format(lista.get(position).getDeImporte());
-        SpannableString PrecioVta = new SpannableString(FormatTotal);
-
-
-
-
-
-
-
-        textPedido.setText(lista.get(position).getiPedido().toString());
-        textFecha.setText(lista.get(position).getDtFecha());
-
-        textxtPza.setText(lista.get(position).getDeTotalPzas().toString());
-
-        textTotal.setText(PrecioVta);
-
-        textHora.setText(time);
-        textPedido.setText(lista.get(position).getiPedidoProv().toString());
-
-
-
-
-        final opPedidoProveedor obj =  lista.get(position);
-
-
-        btnDetalle.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                MuestraDetalle(obj);
-
-            }
-        });
-
-        btnAceptar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                AceptaPedido(obj);
-
-            }
-        });
-
-*/
-        return convertView;
-    }
-
-    private void MuestraDetalle(opPedidoProveedor proveedor) {
-
-
-        context.startActivity(new Intent(context, pedidodetalleActivity.class));
-
+        getDetallePedido(pedido.getiPedido(),pedido.getiPedidoProv()) ;
     }
 
 
-
-    private void AceptaPedido(opPedidoProveedor proveedor){
-        lista.remove(proveedor);
-
-
-        this.notifyDataSetChanged();
+    public void getDetallePedido (int ipiPedido ,int ipiPedProv){
 
         getmRequestQueue();
 
         // String urlParams = String.format(url + "/vtCargaOrden?ipcCveCia=%1$s&ipiFolio=%2$s", globales.vgCompania, viFolioSusp);
 
-        String urlParams = String.format(url + "opPedidoProvActualiza?ipiPedido=%1$s&ipiPedProv=%2$s&ipcTipo=%3$s", 1, 1 ,"ENTREGADO");
+        String urlParams = String.format(url + "opPedidoDet?ipiPedido=%1$s&ipiPedProv=%2$s", ipiPedido, ipiPedProv);
 
-        Log.i("url",urlParams);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
@@ -179,36 +112,44 @@ public class opPedProvAdapter extends BaseAdapter {
 
                             String Mensaje = respuesta.getString("opcMensaje");
                             Boolean Error = respuesta.getBoolean("oplError");
+                            JSONObject ds_opPedidoDet = respuesta.getJSONObject("tt_opPedidoDet");
+
+                            JSONArray tt_opPedidoDet  = ds_opPedidoDet.getJSONArray("tt_opPedidoDet");
+
+                            lista_detalle = Arrays.asList(new Gson().fromJson(tt_opPedidoDet.toString(), opPedidoDet[].class));
 
 
 
-/*
-                            lvPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            ArrayList<opPedidoDet> arrayDetalle = new ArrayList<opPedidoDet>(lista_detalle);
+
+                            adapter = new opPedDetAdapter(pedidodetbanActivity.this, (ArrayList<opPedidoDet>) arrayDetalle);
+
+                            for (opPedidoDet obj : arrayDetalle ){
+                                Log.i("arraylist" , obj.getcDescripcion());
+                            }
+
+                            lvDetalle.setAdapter(adapter);
+
+                            /**lvDetalle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                                    Log.i("click" ,"123");
+                                    opPedidoDet objctArtProv = new opPedidoDet();
 
-                                    opPedidoProveedor objctArtProv = new opPedidoProveedor();
-
-                                    objctArtProv = (opPedidoProveedor) adapter.getItem(position);
+                                    objctArtProv = (opPedidoDet) adapter.getItem(position);
 
                                     Log.i("item" , objctArtProv.getiPedido().toString());
-
-                                    startActivity(new Intent(pedidobandejaActivity.this, pedidodetalleActivity.class));
-                                    finish();
-
 
 
 
                                 }
-                            });
+                            });**/
 
-*/
+
 
                         } catch (JSONException e) {
 
-                            AlertDialog.Builder myBuild = new AlertDialog.Builder(context);
+                            AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidodetbanActivity.this);
                             myBuild.setMessage("Error en la conversión de Datos. Vuelva a Intentar. " + e);
                             myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR CONVERSION </font>"));
                             myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -229,7 +170,7 @@ public class opPedProvAdapter extends BaseAdapter {
 
                         // TODO: Handle error
                         Log.i("Error Respuesta", error.toString());
-                        AlertDialog.Builder myBuild = new AlertDialog.Builder(context);
+                        AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidodetbanActivity.this);
                         myBuild.setMessage("No se pudo conectar con el servidor. Vuelva a Intentar. " + error.toString());
                         myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR RESPUESTA </font>"));
                         myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -261,12 +202,10 @@ public class opPedProvAdapter extends BaseAdapter {
         };
         // Access the RequestQueue through your singleton class.
         mRequestQueue.add(jsonObjectRequest);
-
     }
 
-
     public void MuestraMensaje(String vcTitulo,  String vcMensaje){
-        AlertDialog.Builder myBuild = new AlertDialog.Builder(context);
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(pedidodetbanActivity.this);
         myBuild.setMessage(vcMensaje);
         myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'>" + vcTitulo +"</font>"));
         myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -285,13 +224,11 @@ public class opPedProvAdapter extends BaseAdapter {
     public void getmRequestQueue(){
         try{
             if (mRequestQueue == null) {
-                mRequestQueue = Volley.newRequestQueue(context);
+                mRequestQueue = Volley.newRequestQueue(getApplicationContext());
                 //your code
             }
         }catch(Exception e){
             Log.d("Volley",e.toString());
         }
     }
-
-
 }
