@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Globales {
 
-   // public static  String  URL = "http://sinergitecdemo.ddns.net:8083/painal/rest/painalService/";
+   //public static  String  URL = "http://sinergitecdemo.ddns.net:8083/painal/rest/painalService/";
 
     public static String URL = "http://189.188.71.150:8083/painal/rest/painalService/";
 

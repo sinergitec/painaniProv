@@ -38,8 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class opPedProvXsurtirAdapter extends BaseAdapter {
-
+public class opPedProvXentregarApadter extends BaseAdapter {
 
     public Globales globales;
     private Context context;
@@ -47,31 +46,33 @@ public class opPedProvXsurtirAdapter extends BaseAdapter {
     private static RequestQueue mRequestQueue;
     private String url = globales.URL;
 
-    public opPedProvXsurtirAdapter(Context context, ArrayList<opPedidoProveedor> lista) {
+    public opPedProvXentregarApadter(Context context, ArrayList<opPedidoProveedor> lista) {
         this.context = context;
         this.lista = lista;
     }
 
     @Override
     public int getCount() {
-        return lista.size();
+         return lista.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return lista.get(position);
+
+            return lista.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return position;
+
+            return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.com_xsustir, null);
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.com_xentregar, null);
 
         }
 
@@ -131,12 +132,11 @@ public class opPedProvXsurtirAdapter extends BaseAdapter {
 
         return convertView;
     }
-
     private void MuestraDetalle(opPedidoProveedor pedido) {
 
 
-       Intent intent  = new Intent(context, pedidodetbanActivity.class);
-       intent.putExtra("pedido",pedido);
+        Intent intent  = new Intent(context, pedidodetbanActivity.class);
+        intent.putExtra("pedido",pedido);
         context.startActivity(intent);
     }
 
@@ -152,7 +152,7 @@ public class opPedProvXsurtirAdapter extends BaseAdapter {
 
         // String urlParams = String.format(url + "/vtCargaOrden?ipcCveCia=%1$s&ipiFolio=%2$s", globales.vgCompania, viFolioSusp);
 
-        String urlParams = String.format(url + "opPedidoProvActualiza?ipiPedido=%1$s&ipiPedProv=%2$s&ipcTipo=%3$s", pedido.getiPedido(), pedido.getiPedidoProv()  ,"XSURTIR");
+        String urlParams = String.format(url + "opPedidoProvActualiza?ipiPedido=%1$s&ipiPedProv=%2$s&ipcTipo=%3$s", pedido.getiPedido(), pedido.getiPedidoProv()  ,"XENTREGAR");
 
         Log.i("url",urlParams);
 
@@ -179,7 +179,7 @@ public class opPedProvXsurtirAdapter extends BaseAdapter {
 
                                 notifyDataSetChanged();
 
-                                MuestraMensaje("Informacion" , "Pedido Surtido" + " "  + pedido.getiPedido());
+                                MuestraMensaje("Informacion" , "Pedido Terminado" + " "  + pedido.getiPedido());
 
 
 
@@ -296,6 +296,5 @@ public class opPedProvXsurtirAdapter extends BaseAdapter {
             Log.d("Volley",e.toString());
         }
     }
-
 
 }
