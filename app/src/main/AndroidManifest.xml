@@ -16,25 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.perdidoxentregarActivity"
-            android:label="Pedidos x Entregar">
-
-        </activity>
+        <activity
+            android:name=".activity.perdidoxentregarActivity"
+            android:label="Pedidos x Entregar" />
         <activity
             android:name=".activity.pedidodethistoricoActivity"
-            android:label="Detalle  Historico"></activity>
+            android:label="Detalle  Historico" />
         <activity
             android:name=".activity.pedidodetxsurtirActivity"
-            android:label="Detalle x surtir"></activity>
+            android:label="Detalle x surtir" />
         <activity
             android:name=".activity.pedidoxsurtirActivity"
-            android:label="Pedidos x surtir"></activity>
+            android:label="Pedidos x surtir" />
         <activity
             android:name=".activity.MainActivity"
             android:label="Login" />
         <activity
             android:name=".activity.pedidohistoricoActivity"
-            android:label="Historico "></activity>
+            android:label="Historico " />
         <activity
             android:name=".activity.pedidodetbanActivity"
             android:label="Detalle  Bandeja pedidos" />

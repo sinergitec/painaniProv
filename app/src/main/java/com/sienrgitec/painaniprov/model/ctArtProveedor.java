@@ -16,7 +16,7 @@ public class ctArtProveedor {
     private Boolean lActivo;
     private Object bImagen;
     private Integer dePeso;
-    private Boolean deLargo;
+    private Double deLargo;
     private Integer deAncho;
     private Integer deProfundo;
     private String dtCreado;
@@ -154,11 +154,11 @@ public class ctArtProveedor {
         this.dePeso = dePeso;
     }
 
-    public Boolean getDeLargo() {
+    public Double getDeLargo() {
         return deLargo;
     }
 
-    public void setDeLargo(Boolean deLargo) {
+    public void setDeLargo(Double deLargo) {
         this.deLargo = deLargo;
     }
 
