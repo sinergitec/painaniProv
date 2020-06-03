@@ -70,6 +70,8 @@ public class NewProductoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_producto);
 
+
+        Log.d("New" , "entro");
         btnCrear = (Button) findViewById(R.id.btnCrear);
         txtCveArticulo = (EditText) findViewById(R.id.txtCveArticulo);
         txtDescripcion = (EditText) findViewById(R.id.txtDescripcion);
@@ -112,11 +114,13 @@ public class NewProductoActivity extends AppCompatActivity {
         adapterCategoria.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(adapterCategoria);
 
+
+
         adapterSubCategoria.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spSubCategoria.setAdapter(adapterSubCategoria);
 
 
-        spMarca.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       spMarca.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 ctMarca objMarca = (ctMarca) parent.getSelectedItem();
 
@@ -137,7 +141,7 @@ public class NewProductoActivity extends AppCompatActivity {
                 objArtProveedor.setiCategoria(objCategoria.getiCategoria());
 
 
-                listctSubCategoriaProv.clear();
+               /* listctSubCategoriaProv.clear();
                 for (ctSubCategoriaProv obj : globales.g_ctSubCategoriaProv){
 
                     if (obj.getiCategoria().equals(objCategoria.getiCategoria())) {
@@ -154,7 +158,7 @@ public class NewProductoActivity extends AppCompatActivity {
 
 
 
-
+*/
 
                 //llena sub categoria
             }
@@ -193,22 +197,22 @@ public class NewProductoActivity extends AppCompatActivity {
         arrayArtProveedor.isEmpty();
 
 
-        objArtProveedor.setiProveedor(1);
+        objArtProveedor.setiProveedor(globales.g_ctProveedor.getiProveedor());
         objArtProveedor.setiArticulo(0);
         objArtProveedor.setcArticulo(txtCveArticulo.getText().toString());
         objArtProveedor.setcAplicaciones("");
         objArtProveedor.setcPresentacion(txtPresentacion.getText().toString());
         objArtProveedor.setcDescripcion(txtDescripcion.getText().toString());
-        objArtProveedor.setiImpuesto(0);
+        objArtProveedor.setiImpuesto(1);
         objArtProveedor.setiClasificacion(0);
         objArtProveedor.setiSubClasificacion(0);
         objArtProveedor.setlActivo(true);
         objArtProveedor.setbImagen("");
         objArtProveedor.setDtCreado("");
         objArtProveedor.setDtModificado("");
-        objArtProveedor.setcUsuCrea("");
+        objArtProveedor.setcUsuCrea(globales.g_ctUsuario.getcUsuario());
         objArtProveedor.setcUsuModifica("");
-//        objArtProveedor.setDePrecioVta(precioVta);
+        objArtProveedor.setDePrecioVtaPza(precioVta);
         objArtProveedor.setId("");
 
         arrayArtProveedor.add(objArtProveedor);

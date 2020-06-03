@@ -113,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        txtProveedor.setText(globales.g_ctProveedor.getcNegocio());
+      txtProveedor.setText(globales.g_ctProveedor.getcNegocio());
 
 
     }

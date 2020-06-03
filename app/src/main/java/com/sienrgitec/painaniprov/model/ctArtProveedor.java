@@ -23,8 +23,8 @@ public class ctArtProveedor {
     private String dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
-    private Integer dePrecioVtaPza;
-    private Integer dePrecioVtaGranel;
+    private Double dePrecioVtaPza;
+    private Double dePrecioVtaGranel;
     private Integer iUMedida;
     private String cUnidadM;
     private String cMarca;
@@ -210,19 +210,19 @@ public class ctArtProveedor {
         this.cUsuModifica = cUsuModifica;
     }
 
-    public Integer getDePrecioVtaPza() {
+    public Double getDePrecioVtaPza() {
         return dePrecioVtaPza;
     }
 
-    public void setDePrecioVtaPza(Integer dePrecioVtaPza) {
+    public void setDePrecioVtaPza(Double dePrecioVtaPza) {
         this.dePrecioVtaPza = dePrecioVtaPza;
     }
 
-    public Integer getDePrecioVtaGranel() {
+    public Double getDePrecioVtaGranel() {
         return dePrecioVtaGranel;
     }
 
-    public void setDePrecioVtaGranel(Integer dePrecioVtaGranel) {
+    public void setDePrecioVtaGranel(Double dePrecioVtaGranel) {
         this.dePrecioVtaGranel = dePrecioVtaGranel;
     }
 

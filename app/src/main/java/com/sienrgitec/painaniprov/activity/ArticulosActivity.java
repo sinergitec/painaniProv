@@ -69,6 +69,8 @@ public class ArticulosActivity extends AppCompatActivity {
 
         cargaArticulos(globales.g_ctProveedor.getiProveedor());
 
+        cargaCategorias(globales.g_ctProveedor.getiProveedor());
+
 
     }
 
@@ -219,6 +221,7 @@ public class ArticulosActivity extends AppCompatActivity {
                             Log.i("marca", String.valueOf(globales.g_ctMarca.size()));
 
 
+                            Log.i("categoria", String.valueOf(globales.g_ctCategoriaProv.size()));
 
 
 
@@ -293,9 +296,10 @@ public class ArticulosActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.mnuNuevo:
-                Intent iMenu = new Intent(getApplicationContext(), NewProductoActivity.class);
-                startActivity(iMenu);
-                finish();
+                Log.d("Menu" , "entro");
+               Intent IntentArt= new Intent(getApplicationContext(), NewProductoActivity.class);
+                startActivity(IntentArt);
+                //finish();
                 return true;
 
             default:

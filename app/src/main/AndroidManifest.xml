@@ -40,8 +40,10 @@
         <activity
             android:name=".activity.pedidobandejaActivity"
             android:label="Bandeja pedidos" />
-        <activity android:name=".activity.updateProductoActivity" />
-        <activity android:name=".activity.viewProductoActivity" />
+        <activity android:name=".activity.updateProductoActivity"
+            android:label="Actualiza Articulo"/>
+        <activity android:name=".activity.viewProductoActivity"
+            android:label="Detalle Articulo"/>
         <activity
             android:name=".activity.NewProductoActivity"
             android:label="Nuevo Producto" />
