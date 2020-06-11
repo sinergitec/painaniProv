@@ -198,6 +198,7 @@ public class NewProductoActivity extends AppCompatActivity {
 
 
         objArtProveedor.setiProveedor(globales.g_ctProveedor.getiProveedor());
+        objArtProveedor.setiDomicilio(globales.g_ctDomicilio.getiDomicilio());
         objArtProveedor.setiArticulo(0);
         objArtProveedor.setcArticulo(txtCveArticulo.getText().toString());
         objArtProveedor.setcAplicaciones("");

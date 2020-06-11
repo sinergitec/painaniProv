@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.sienrgitec.painaniprov.R;
+import com.sienrgitec.painaniprov.model.ctArtProveedor;
 
 public class updateProductoActivity extends AppCompatActivity {
 
@@ -13,4 +14,6 @@ public class updateProductoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_producto);
     }
+
+
 }

@@ -22,8 +22,9 @@ public class ctProveedor {
     private String cObs;
     private Integer iUnidad;
     private String dtAfiliacion;
+    private Boolean lPideOtrasUnidades;
     private String dtCreado;
-    private Object dtModificado;
+    private String dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
     private Object id;
@@ -188,6 +189,14 @@ public class ctProveedor {
         this.dtAfiliacion = dtAfiliacion;
     }
 
+    public Boolean getlPideOtrasUnidades() {
+        return lPideOtrasUnidades;
+    }
+
+    public void setlPideOtrasUnidades(Boolean lPideOtrasUnidades) {
+        this.lPideOtrasUnidades = lPideOtrasUnidades;
+    }
+
     public String getDtCreado() {
         return dtCreado;
     }
@@ -196,11 +205,11 @@ public class ctProveedor {
         this.dtCreado = dtCreado;
     }
 
-    public Object getDtModificado() {
+    public String getDtModificado() {
         return dtModificado;
     }
 
-    public void setDtModificado(Object dtModificado) {
+    public void setDtModificado(String dtModificado) {
         this.dtModificado = dtModificado;
     }
 

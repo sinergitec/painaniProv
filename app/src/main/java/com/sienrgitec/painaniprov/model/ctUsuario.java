@@ -8,9 +8,10 @@ public class ctUsuario  implements Serializable {
     private String cPassword;
     private Integer iPersona;
     private Integer iTipoPersona;
+    private Integer iDomicilio;
     private Boolean lActivo;
-    private Object dtCreado;
-    private Object dtModificado;
+    private String dtCreado;
+    private String dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
     private Object id;
@@ -47,6 +48,14 @@ public class ctUsuario  implements Serializable {
         this.iTipoPersona = iTipoPersona;
     }
 
+    public Integer getiDomicilio() {
+        return iDomicilio;
+    }
+
+    public void setiDomicilio(Integer iDomicilio) {
+        this.iDomicilio = iDomicilio;
+    }
+
     public Boolean getlActivo() {
         return lActivo;
     }
@@ -55,19 +64,19 @@ public class ctUsuario  implements Serializable {
         this.lActivo = lActivo;
     }
 
-    public Object getDtCreado() {
+    public String getDtCreado() {
         return dtCreado;
     }
 
-    public void setDtCreado(Object dtCreado) {
+    public void setDtCreado(String dtCreado) {
         this.dtCreado = dtCreado;
     }
 
-    public Object getDtModificado() {
+    public String getDtModificado() {
         return dtModificado;
     }
 
-    public void setDtModificado(Object dtModificado) {
+    public void setDtModificado(String dtModificado) {
         this.dtModificado = dtModificado;
     }
 

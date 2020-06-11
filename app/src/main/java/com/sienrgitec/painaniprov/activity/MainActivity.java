@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.sienrgitec.painaniprov.R;
 import com.sienrgitec.painaniprov.config.Globales;
+import com.sienrgitec.painaniprov.model.ctDomicilio;
 import com.sienrgitec.painaniprov.model.ctProveedor;
 import com.sienrgitec.painaniprov.model.ctUsuario;
 
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<ctUsuario> listUsuario;
     private List<ctProveedor> listProveedor;
+    private  List<ctDomicilio> listDomicilio;
 
     private String email = "";
 
@@ -153,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         getmRequestQueue();
-        String urlParams = String.format(url + "PwordProv?ipcEmail=%1$s&ipcPersona=%2$s", vcUsuario, "Proveedor");
+        String urlParams = String.format(url + "PwordProv?ipcUsuario=%1$s&ipcPassword=%2$s&ipcPersona=%3$s", vcUsuario,vcPassword, "Proveedor");
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
@@ -165,17 +167,22 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject respuesta = response.getJSONObject("response");
                             Log.i("respuesta--->", respuesta.toString());
 
-                            String Mensaje = respuesta.getString("opcError");
+                            String Mensaje = respuesta.getString("opcMensaje");
                             Boolean Error = respuesta.getBoolean("oplError");
                             JSONObject ds_ctUsuario = respuesta.getJSONObject("tt_ctUsuario");
                             JSONObject ds_ctProveedor = respuesta.getJSONObject("tt_ctProveedor");
+                            JSONObject ds_ctDomicilio = respuesta.getJSONObject("tt_ctDomicilio");
+
 
                             JSONArray tt_ctUsuario = ds_ctUsuario.getJSONArray("tt_ctUsuario");
                             JSONArray tt_ctProveedor = ds_ctProveedor.getJSONArray("tt_ctProveedor");
+                            JSONArray tt_ctDomicilio = ds_ctDomicilio.getJSONArray("tt_ctDomicilio");
+
 
 
                             listUsuario = Arrays.asList(new Gson().fromJson(tt_ctUsuario.toString(), ctUsuario[].class));
                             listProveedor = Arrays.asList(new Gson().fromJson(tt_ctProveedor.toString(), ctProveedor[].class));
+                            listDomicilio = Arrays.asList(new Gson().fromJson(tt_ctDomicilio.toString(), ctDomicilio[].class));
 
                             if (! listUsuario.isEmpty()) {
                                 globales.g_ctUsuario = listUsuario.get(0);
@@ -183,6 +190,10 @@ public class MainActivity extends AppCompatActivity {
                             if (! listProveedor.isEmpty()){
                                 globales.g_ctProveedor = listProveedor.get(0);
 
+                            }
+
+                            if (!listDomicilio.isEmpty()) {
+                                globales.g_ctDomicilio = listDomicilio.get(0);
                             }
 
 
@@ -204,10 +215,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 }
 
-                                if (!globales.g_ctUsuario.getcPassword().equals(vcPassword)) {
+                               /*imb if (!globales.g_ctUsuario.getcPassword().equals(vcPassword)) {
                                     MuestraMensaje("Error", "el password es incorrecto");
                                     return;
-                                }
+                                }*/
 
                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                 finish();

@@ -58,15 +58,15 @@ public class perdidoxentregarActivity extends AppCompatActivity {
         lvPedidos = (ListView) findViewById(R.id.lvPedidos);
         lista_pedprov = new ArrayList<opPedidoProveedor>();
 
-        getPedidos( proveedor.getiProveedor()); //proveedor.getiProveedor());
+        getPedidos( proveedor.getiProveedor(), globales.g_ctDomicilio.getiDomicilio()); //proveedor.getiProveedor());
     }
 
-    public void getPedidos (int ipiProveedor){
+    public void getPedidos (int ipiProveedor , int ipiDomicilio ){
         getmRequestQueue();
 
-        // String urlParams = String.format(url + "/vtCargaOrden?ipcCveCia=%1$s&ipiFolio=%2$s", globales.vgCompania, viFolioSusp);
 
-        String urlParams = String.format(url + "opPedidoProveedor?ipiProveedor=%1$s&ipcCuales=%2$s", ipiProveedor, "XENTREGAR");
+       // String urlParams = String.format(url + "opPedidoProveedor?ipiProveedor=%1$s&ipcCuales=%2$s", ipiProveedor, "XENTREGAR");
+        String urlParams = String.format(url + "opPedidoProveedor?ipiProveedor=%1$s&ipiDomicilio=%2$s&ipcCuales=%3$s", ipiProveedor, ipiDomicilio, "XENTREGAR");
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest

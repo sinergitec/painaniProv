@@ -1,7 +1,10 @@
 package com.sienrgitec.painaniprov.model;
 
-public class ctArtProveedor {
+import java.io.Serializable;
+
+public class ctArtProveedor  implements Serializable {
     private Integer iProveedor;
+    private Integer iDomicilio;
     private Integer iArticulo;
     private String cArticulo;
     private String cAplicaciones;
@@ -33,6 +36,15 @@ public class ctArtProveedor {
     private String cClasificacion;
     private String cSubClasificacion;
     private Object id;
+
+
+    public Integer getiDomicilio() {
+        return iDomicilio;
+    }
+
+    public void setiDomicilio(Integer iDomicilio) {
+        this.iDomicilio = iDomicilio;
+    }
 
     public Integer getiProveedor() {
         return iProveedor;

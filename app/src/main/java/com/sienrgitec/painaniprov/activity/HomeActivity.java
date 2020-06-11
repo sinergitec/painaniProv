@@ -63,11 +63,15 @@ public class HomeActivity extends AppCompatActivity {
 
         txtProveedor =(TextView) findViewById(R.id.txtProveedor);
 
+        txtProveedor.setText(globales.g_ctProveedor.getcNegocio());
+
+
+
         btnIniOpe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                InicioOpe(globales.g_ctProveedor.getiProveedor());
+                InicioOpe(globales.g_ctProveedor.getiProveedor() ,globales.g_ctDomicilio.getiDomicilio());
 
             }
         });
@@ -113,9 +117,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-      txtProveedor.setText(globales.g_ctProveedor.getcNegocio());
-
-
     }
 
     private void MenuHistorico() {
@@ -143,13 +144,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    private  void InicioOpe(int iProveedor){
+    private  void InicioOpe(int ipiProveedor ,int ipiDomicilio){
 
         getmRequestQueue();
 
         // String urlParams = String.format(url + "/vtCargaOrden?ipcCveCia=%1$s&ipiFolio=%2$s", globales.vgCompania, viFolioSusp);
 
-        String urlParams = String.format(url + "ctProveedor/?ipiProveedor=" + iProveedor);
+        String urlParams = String.format(url + "ctProveedor/?ipiProveedor=%1$s&ipiDomicilio=%2$s"  , ipiProveedor , ipiDomicilio);
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest

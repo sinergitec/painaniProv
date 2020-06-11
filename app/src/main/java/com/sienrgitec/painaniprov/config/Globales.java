@@ -1,6 +1,7 @@
 package com.sienrgitec.painaniprov.config;
 
 import com.sienrgitec.painaniprov.model.ctCategoriaProv;
+import com.sienrgitec.painaniprov.model.ctDomicilio;
 import com.sienrgitec.painaniprov.model.ctMarca;
 import com.sienrgitec.painaniprov.model.ctProveedor;
 import com.sienrgitec.painaniprov.model.ctSubCategoriaProv;
@@ -16,6 +17,7 @@ public class Globales {
 
     public static ctUsuario g_ctUsuario = null;
     public static ctProveedor g_ctProveedor = null;
+    public static ctDomicilio g_ctDomicilio = null;
     public static List<ctMarca> g_ctMarca = null;
 
     public static List<ctCategoriaProv> g_ctCategoriaProv = null;

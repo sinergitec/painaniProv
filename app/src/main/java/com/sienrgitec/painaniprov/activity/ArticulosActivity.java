@@ -67,18 +67,22 @@ public class ArticulosActivity extends AppCompatActivity {
 
 
 
-        cargaArticulos(globales.g_ctProveedor.getiProveedor());
+        cargaArticulos(globales.g_ctProveedor.getiProveedor() , globales.g_ctDomicilio.getiDomicilio());
 
         cargaCategorias(globales.g_ctProveedor.getiProveedor());
 
 
     }
 
-    public void cargaArticulos(int ipiProveedor ){
+    public void cargaArticulos(int ipiProveedor  ,int ipiDomicilio){
 
         getmRequestQueue();
-        String urlParams = String.format(url + "ctArtProveedor?ipiProveedor=" + ipiProveedor);
 
+        // String urlParams = String.format(url + "/vtCargaOrden?ipcCveCia=%1$s&ipiFolio=%2$s", globales.vgCompania, viFolioSusp);
+
+        String urlParams = String.format(url + "ctArtProveedor?ipiProveedor=%1$s&ipiDomicilio=%2$s"  , ipiProveedor , ipiDomicilio);
+
+        Log.d("url", urlParams);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
@@ -93,6 +97,13 @@ public class ArticulosActivity extends AppCompatActivity {
 
                             String Mensaje = respuesta.getString("opcMensaje");
                             Boolean Error = respuesta.getBoolean("oplError");
+
+                            if (Error== true){
+                                MuestraMensaje("Error" , Mensaje);
+                                return;
+                            }
+
+
                             JSONObject ds_ctArtProveedor = respuesta.getJSONObject("tt_ctArtProveedor");
 
                             JSONArray tt_ctArtProveedor  = ds_ctArtProveedor.getJSONArray("tt_ctArtProveedor");
@@ -114,8 +125,15 @@ public class ArticulosActivity extends AppCompatActivity {
 
                                     Log.i("item" , objctArtProv.getcDescripcion());
 
-                                    startActivity(new Intent(ArticulosActivity.this, updateProductoActivity.class));
-                                    finish();
+
+                                    Intent intent=new Intent(ArticulosActivity.this,viewProductoActivity.class);
+                                    intent.putExtra("objctArtProv",objctArtProv);
+                                    startActivity(intent);
+
+
+
+
+
 
                                 }
                             });
