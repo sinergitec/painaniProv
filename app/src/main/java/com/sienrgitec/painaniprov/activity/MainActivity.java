@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Recupera contraseña");
+                builder.setTitle("Recupera contraseña- Captura nombre de usuario");
 
                 final EditText password = new EditText(MainActivity.this);
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         email = password.getText().toString();
 
                         if(password.getText().toString().isEmpty()){
-                            MuestraMensaje("Error", "Se debe capturar el correo electrónico");
+                            MuestraMensaje("Error", "Se debe capturar el nombre de usuario");
                             return;
                         } else{
                             RecuperaPW();
@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
 
                             } else {
 
-                                tvRecuperaPW.setEnabled(false);
+                                tvRecuperaPW.setEnabled(true);
 
                                 MuestraMensaje("Aviso", "Tu contraseña es " + globales.g_ctUsuario.getcPassword());
                             }
