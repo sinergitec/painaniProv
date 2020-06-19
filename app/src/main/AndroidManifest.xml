@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ConsultaPagos"></activity>
         <activity
             android:name=".activity.perdidoxentregarActivity"
             android:label="Pedidos x Entregar" />
@@ -40,10 +41,12 @@
         <activity
             android:name=".activity.pedidobandejaActivity"
             android:label="Bandeja pedidos" />
-        <activity android:name=".activity.updateProductoActivity"
-            android:label="Actualiza Articulo"/>
-        <activity android:name=".activity.viewProductoActivity"
-            android:label="Detalle Articulo"/>
+        <activity
+            android:name=".activity.updateProductoActivity"
+            android:label="Actualiza Articulo" />
+        <activity
+            android:name=".activity.viewProductoActivity"
+            android:label="Detalle Articulo" />
         <activity
             android:name=".activity.NewProductoActivity"
             android:label="Nuevo Producto" />

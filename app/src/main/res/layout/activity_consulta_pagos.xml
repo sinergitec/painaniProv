@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textFec"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="99/99/9999"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textAtendidos"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:text="Atendidos"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/textAtendidosT"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="999"
+                android:textSize="20sp"
+                android:textColor="#2196F3"/>
+            <TextView
+                android:id="@+id/textVacio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="                  "
+                android:textSize="20sp"
+                android:textColor="#2196F3"/>
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textIngresoB"
+                android:layout_height="wrap_content"
+                android:layout_span="1"
+                android:text="Ingreso Bruto"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textAportaCP"
+                android:layout_height="wrap_content"
+                android:layout_span="1"
+                android:text="AportaCP"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/textProp"
+                android:layout_height="wrap_content"
+                android:layout_span="1"
+                android:text="Propina"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/textIngresoN"
+                android:layout_height="wrap_content"
+                android:layout_span="1"
+                android:text="Ingreso N"
+                android:textSize="18sp" />
+
+
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvIb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="999"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/tvAporta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="999.99"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/tvMontoProp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="999.99"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/tvMontoNeto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="999.99"
+                android:textSize="20sp"/>
+
+
+        </TableRow>
+
+        <View
+            android:id="@+id/textFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_margin="3dp"
+            android:background="#000000"
+            />
+
+
+    </TableLayout>
+</RelativeLayout>
