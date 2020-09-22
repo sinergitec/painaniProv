@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ConsultaPagos"></activity>
+        <activity android:name=".activity.FinOpeActivity"></activity>
+        <activity android:name=".activity.InicioOpeActivity" />
+        <activity android:name=".activity.titlaniActivity" />
+        <activity android:name=".activity.OperacionesActivity" />
+        <activity android:name=".activity.ConsultaPagos" />
         <activity
             android:name=".activity.perdidoxentregarActivity"
             android:label="Pedidos x Entregar" />

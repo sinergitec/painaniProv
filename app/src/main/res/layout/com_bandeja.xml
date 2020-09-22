@@ -88,6 +88,12 @@
                             android:layout_column="0"
                             android:textColor="#FFFFFF"/>
 
+            <Button
+                android:id="@+id/btnTitlani"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titlani" />
+
                         <Button
                             android:id="@+id/btnAceptar"
                             android:layout_width="wrap_content"
@@ -95,7 +101,9 @@
                             android:text="Aceptar"
                             android:textColor="#FFFF"
                             android:background="@drawable/btn_home_bandeja"
-                            android:layout_column="2"/>
+                            android:layout_column="2"
+                            />
+
             -->
         </TableRow>
 

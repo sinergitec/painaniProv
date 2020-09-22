@@ -145,7 +145,9 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private  void InicioOpe(int ipiProveedor ,int ipiDomicilio){
+        startActivity(new Intent(HomeActivity.this , OperacionesActivity.class) );
 
+/*
         getmRequestQueue();
 
         // String urlParams = String.format(url + "/vtCargaOrden?ipcCveCia=%1$s&ipiFolio=%2$s", globales.vgCompania, viFolioSusp);
@@ -233,6 +235,8 @@ public class HomeActivity extends AppCompatActivity {
         };
         // Access the RequestQueue through your singleton class.
         mRequestQueue.add(jsonObjectRequest);
+        */
+
     }
 
     public void MuestraMensaje(String vcTitulo,  String vcMensaje){

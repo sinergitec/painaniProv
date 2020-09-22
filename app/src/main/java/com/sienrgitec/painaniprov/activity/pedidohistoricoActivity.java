@@ -32,6 +32,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,7 +96,13 @@ public class pedidohistoricoActivity extends AppCompatActivity {
 
                             ArrayList<opPedidoProveedor> arrayPedProv = new ArrayList<opPedidoProveedor>(lista_pedprov);
 
+                            Collections.sort(arrayPedProv, new Comparator<opPedidoProveedor>() {
 
+                                @Override
+                                public int compare(opPedidoProveedor o1, opPedidoProveedor o2) {
+                                    return new Integer(o2.getiPedido() ).compareTo(new Integer(o1.getiPedido()));
+                                }
+                            });
                             adapter = new opPedProvConsulaAdapter(pedidohistoricoActivity.this, (ArrayList<opPedidoProveedor>) arrayPedProv);
                             lvPedidos.setAdapter(adapter);
 

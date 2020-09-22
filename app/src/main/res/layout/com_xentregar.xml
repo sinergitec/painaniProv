@@ -89,6 +89,13 @@
                             android:textColor="#FFFFFF"/>
 
             <Button
+                android:id="@+id/btnTitlani"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titlani" />
+
+
+            <Button
                 android:id="@+id/btnTerminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

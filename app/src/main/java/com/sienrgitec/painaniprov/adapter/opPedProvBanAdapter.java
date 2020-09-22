@@ -26,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.sienrgitec.painaniprov.R;
 import com.sienrgitec.painaniprov.activity.pedidodetbanActivity;
+import com.sienrgitec.painaniprov.activity.titlaniActivity;
 import com.sienrgitec.painaniprov.config.Globales;
 import com.sienrgitec.painaniprov.model.opPedidoProveedor;
 
@@ -83,6 +84,8 @@ public class opPedProvBanAdapter extends BaseAdapter {
         TextView  textHora   = (TextView) convertView.findViewById(R.id.textHora) ;
         Button btnDetalle = (Button) convertView.findViewById(R.id.btnDetalle);
         Button btnAceptar = (Button) convertView.findViewById(R.id.btnAceptar);
+        Button btnTitlani  = (Button) convertView.findViewById(R.id.btnTitlani);
+
 
         int millis = lista.get(position).getiHora() / 1000;
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
@@ -128,6 +131,15 @@ public class opPedProvBanAdapter extends BaseAdapter {
             }
         });
 
+        btnTitlani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MuestraTitlani(obj);
+
+            }
+        });
+
 
         return convertView;
     }
@@ -137,6 +149,14 @@ public class opPedProvBanAdapter extends BaseAdapter {
 
        Intent intent  = new Intent(context, pedidodetbanActivity.class);
        intent.putExtra("pedido",pedido);
+        context.startActivity(intent);
+    }
+
+    private void MuestraTitlani(opPedidoProveedor pedido) {
+
+
+        Intent intent  = new Intent(context, titlaniActivity.class);
+        intent.putExtra("pedido",pedido);
         context.startActivity(intent);
     }
 
