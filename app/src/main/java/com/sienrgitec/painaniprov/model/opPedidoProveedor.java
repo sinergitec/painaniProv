@@ -36,6 +36,7 @@ public class opPedidoProveedor  implements Serializable {
     private String dtModificado;
     private String cUsuCrea;
     private String cUsuModifica;
+    private Boolean lSurtido;
     private Object id;
 
 
@@ -291,9 +292,18 @@ public class opPedidoProveedor  implements Serializable {
         this.cUsuModifica = cUsuModifica;
     }
 
+    public Boolean getlSurtido() {
+        return lSurtido;
+    }
+
+    public void setlSurtido(Boolean lSurtido) {
+        this.lSurtido = lSurtido;
+    }
+
     public Object getId() {
         return id;
     }
+
 
     public void setId(Object id) {
         this.id = id;

@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.FinOpeActivity"></activity>
+        <activity android:name=".activity.EvaluaTitlani"></activity>
+        <activity android:name=".activity.FinOpeActivity" />
         <activity android:name=".activity.InicioOpeActivity" />
         <activity android:name=".activity.titlaniActivity" />
         <activity android:name=".activity.OperacionesActivity" />

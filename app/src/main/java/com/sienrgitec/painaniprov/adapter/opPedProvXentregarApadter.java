@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.sienrgitec.painaniprov.R;
+import com.sienrgitec.painaniprov.activity.EvaluaTitlani;
 import com.sienrgitec.painaniprov.activity.pedidodetbanActivity;
 import com.sienrgitec.painaniprov.config.Globales;
 import com.sienrgitec.painaniprov.model.opPedidoProveedor;
@@ -181,7 +182,9 @@ public class opPedProvXentregarApadter extends BaseAdapter {
 
                                 MuestraMensaje("Informacion" , "Pedido Terminado" + " "  + pedido.getiPedido());
 
-
+                                Intent intent  = new Intent(context, EvaluaTitlani.class);
+                                intent.putExtra("pedido",pedido);
+                                context.startActivity(intent);
 
                             }
 

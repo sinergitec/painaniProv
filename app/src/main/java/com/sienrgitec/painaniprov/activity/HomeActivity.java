@@ -21,13 +21,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.sienrgitec.painaniprov.R;
 import com.sienrgitec.painaniprov.config.Globales;
+import com.sienrgitec.painaniprov.model.ctDomicilio;
+import com.sienrgitec.painaniprov.model.ctProveedor;
+import com.sienrgitec.painaniprov.model.ctUsuario;
+import com.sienrgitec.painaniprov.model.opDispProveedor;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
@@ -41,8 +49,12 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnIniOpe;
     private Button btnPedXEntregar;
 
+    private  TextView txtActivo;
+
 
     public Globales globales;
+
+    private List<opDispProveedor> opDispProveedorList;
 
 
     private static RequestQueue mRequestQueue;
@@ -62,8 +74,11 @@ public class HomeActivity extends AppCompatActivity {
         btnPedXEntregar =(Button) findViewById(R.id.btnPedXEntregar);
 
         txtProveedor =(TextView) findViewById(R.id.txtProveedor);
+        txtActivo    =(TextView) findViewById(R.id.txtActivo);
 
         txtProveedor.setText(globales.g_ctProveedor.getcNegocio());
+
+
 
 
 
@@ -116,6 +131,9 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+        getDisponible(globales.g_ctProveedor.getiProveedor(),globales.g_ctDomicilio.getiDomicilio());
+
+
 
     }
 
@@ -147,95 +165,6 @@ public class HomeActivity extends AppCompatActivity {
     private  void InicioOpe(int ipiProveedor ,int ipiDomicilio){
         startActivity(new Intent(HomeActivity.this , OperacionesActivity.class) );
 
-/*
-        getmRequestQueue();
-
-        // String urlParams = String.format(url + "/vtCargaOrden?ipcCveCia=%1$s&ipiFolio=%2$s", globales.vgCompania, viFolioSusp);
-
-        String urlParams = String.format(url + "ctProveedor/?ipiProveedor=%1$s&ipiDomicilio=%2$s"  , ipiProveedor , ipiDomicilio);
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, urlParams, null, new Response.Listener<JSONObject>() {
-
-                        @RequiresApi(api = Build.VERSION_CODES.N)
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-
-                            JSONObject respuesta = response.getJSONObject("response");
-                            Log.i("respuesta--->", respuesta.toString());
-
-
-                            String Mensaje = respuesta.getString("opcMensaje");
-                            Boolean Error = respuesta.getBoolean("oplError");
-
-
-                            if (Error == true){
-                                MuestraMensaje("Error" , Mensaje);
-
-                            }else{
-                                MuestraMensaje("informacion", "Inicio de operaciones correcto");
-                            }
-
-
-
-                        } catch (JSONException e) {
-
-                            AlertDialog.Builder myBuild = new AlertDialog.Builder(HomeActivity.this);
-                            myBuild.setMessage("Error en la conversión de Datos. Vuelva a Intentar. " + e);
-                            myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR CONVERSION </font>"));
-                            myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-
-                                }
-                            });
-                            AlertDialog dialog = myBuild.create();
-                            dialog.show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        // TODO: Handle error
-                        Log.i("Error Respuesta", error.toString());
-                        AlertDialog.Builder myBuild = new AlertDialog.Builder(HomeActivity.this);
-                        myBuild.setMessage("No se pudo conectar con el servidor. Vuelva a Intentar. " + error.toString());
-                        myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR RESPUESTA </font>"));
-                        myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-
-                        AlertDialog dialog = myBuild.create();
-                        dialog.show();
-                    }
-                }) {
-            @Override
-            public Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-
-
-
-                return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                return headers;
-            }
-        };
-        // Access the RequestQueue through your singleton class.
-        mRequestQueue.add(jsonObjectRequest);
-        */
 
     }
 
@@ -256,6 +185,126 @@ public class HomeActivity extends AppCompatActivity {
         return;
 
     }
+
+
+    private void getDisponible(int ipiProveedor , int ipiDomicilio) {
+
+
+        Log.i("home", "ctProveedor");
+        getmRequestQueue();
+        String urlParams = String.format(url + "ctProveedor?ipiProveedor=%1$s&ipiDomicilio=%2$s", ipiProveedor,ipiDomicilio);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            JSONObject respuesta = response.getJSONObject("response");
+                            Log.i("respuesta--->", respuesta.toString());
+
+                            String Mensaje = respuesta.getString("opcMensaje");
+                            Boolean Error = respuesta.getBoolean("oplError");
+                            JSONObject ds_opDispProveedor = respuesta.getJSONObject("tt_opDispProveedor");
+
+                             JSONArray tt_opDispProveedor = ds_opDispProveedor.getJSONArray("tt_opDispProveedor");
+
+
+
+
+
+
+                            if (Error == true) {
+
+                                MuestraMensaje("Error", Mensaje);
+                                return;
+
+                            } else {
+
+
+                                opDispProveedorList = Arrays.asList(new Gson().fromJson(tt_opDispProveedor.toString(), opDispProveedor[].class));
+
+                                if (! opDispProveedorList.isEmpty()) {
+                                    globales.g_opDispProveedor = opDispProveedorList.get(0);
+
+
+                                    if (globales.g_opDispProveedor.getDtCheckIn().equals(0) ||
+                                        globales.g_opDispProveedor.getDtCheckIn() == null){
+                                        txtActivo.setText("Activo");
+
+                                    }else {
+                                        txtActivo.setText("Cierre de Opreaciones");
+                                    }
+                                }else {
+                                    txtActivo.setText("Inactivo");
+                                }
+
+
+
+                            }
+
+
+                        } catch (JSONException e) {
+
+                            android.app.AlertDialog.Builder myBuild = new android.app.AlertDialog.Builder(HomeActivity.this);
+                            myBuild.setMessage("Error en la conversión de Datos. Vuelva a Intentar. " + e);
+                            myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR CONVERSION </font>"));
+                            myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+
+                                }
+                            });
+                            android.app.AlertDialog dialog = myBuild.create();
+                            dialog.show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        // TODO: Handle error
+                        Log.i("Error Respuesta", error.toString());
+                        android.app.AlertDialog.Builder myBuild = new android.app.AlertDialog.Builder(HomeActivity.this);
+                        myBuild.setMessage("No se pudo conectar con el servidor. Vuelva a Intentar. " + error.toString());
+                        myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR RESPUESTA </font>"));
+                        myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        android.app.AlertDialog dialog = myBuild.create();
+                        dialog.show();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+        };
+        // Access the RequestQueue through your singleton class.
+
+
+        mRequestQueue.add(jsonObjectRequest);
+
+
+    }
+
     public void getmRequestQueue(){
         try{
             if (mRequestQueue == null) {
@@ -266,6 +315,8 @@ public class HomeActivity extends AppCompatActivity {
             Log.d("Volley",e.toString());
         }
     }
+
+
 
 
 

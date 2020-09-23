@@ -3,6 +3,7 @@ package com.sienrgitec.painaniprov.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.text.Html;
 import android.text.SpannableString;
@@ -81,6 +82,9 @@ public class opPedProvConsulaAdapter extends BaseAdapter {
         TextView  textHora   = (TextView) convertView.findViewById(R.id.textHora) ;
         Button btnDetalle = (Button) convertView.findViewById(R.id.btnDetalle);
 
+
+
+
         int millis = lista.get(position).getiHora() / 1000;
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
         String time = df.format(millis);
@@ -105,6 +109,48 @@ public class opPedProvConsulaAdapter extends BaseAdapter {
         textTotal.setText(PrecioVta);
 
         textHora.setText(time);
+
+        int bandeja = Color.parseColor("#3F51B5");
+        int surtir  = Color.parseColor("#4CAF50");
+
+        int entregar = Color.parseColor("#FF9800");
+
+        if(lista.get(position).getlContestado().equals(true) &&
+           lista.get(position).getlSurtido().equals(true) &&
+           lista.get(position).getlEntregado().equals(true)){
+
+            textPedido.setTextColor(bandeja);
+            textFecha.setTextColor(bandeja);
+            textxtPza.setTextColor(bandeja);
+            textTotal.setTextColor(bandeja);
+            textHora .setTextColor(bandeja);
+
+        }else if(lista.get(position).getlContestado().equals(true) &&
+                lista.get(position).getlSurtido().equals(false) &&
+                lista.get(position).getlEntregado().equals(false)) {
+            textPedido.setTextColor(surtir);
+            textFecha.setTextColor(surtir);
+            textxtPza.setTextColor(surtir);
+            textTotal.setTextColor(surtir);
+            textHora .setTextColor(surtir);
+
+        }else if (lista.get(position).getlContestado().equals(true) &&
+                lista.get(position).getlSurtido().equals(true) &&
+                lista.get(position).getlEntregado().equals(false)) {
+            textPedido.setTextColor(entregar);
+            textFecha.setTextColor(entregar);
+            textxtPza.setTextColor(entregar);
+            textTotal.setTextColor(entregar);
+            textHora .setTextColor(entregar);
+        }
+
+
+
+
+
+
+
+
 
 
 
