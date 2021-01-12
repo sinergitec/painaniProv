@@ -12,9 +12,9 @@ public class opPedidoProveedor  implements Serializable {
     private Integer iHora;
     private Integer iDomicilio;
     private Double deTotalPzas;
-    private Integer deSubTotal;
-    private Integer deImpuesto;
-    private Integer deImporte;
+    private Double deSubTotal;
+    private Double deImpuesto;
+    private Double deImporte;
     private String dtAvisado;
     private Boolean lContestado;
     private String dtContestado;
@@ -100,27 +100,27 @@ public class opPedidoProveedor  implements Serializable {
         this.deTotalPzas = deTotalPzas;
     }
 
-    public Integer getDeSubTotal() {
+    public Double getDeSubTotal() {
         return deSubTotal;
     }
 
-    public void setDeSubTotal(Integer deSubTotal) {
+    public void setDeSubTotal(Double deSubTotal) {
         this.deSubTotal = deSubTotal;
     }
 
-    public Integer getDeImpuesto() {
+    public Double getDeImpuesto() {
         return deImpuesto;
     }
 
-    public void setDeImpuesto(Integer deImpuesto) {
+    public void setDeImpuesto(Double deImpuesto) {
         this.deImpuesto = deImpuesto;
     }
 
-    public Integer getDeImporte() {
+    public Double getDeImporte() {
         return deImporte;
     }
 
-    public void setDeImporte(Integer deImporte) {
+    public void setDeImporte(Double deImporte) {
         this.deImporte = deImporte;
     }
 
