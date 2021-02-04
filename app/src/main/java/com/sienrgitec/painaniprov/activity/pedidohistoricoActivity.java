@@ -4,12 +4,19 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,15 +37,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class pedidohistoricoActivity extends AppCompatActivity {
+public class pedidohistoricoActivity extends AppCompatActivity  implements View.OnClickListener {
 
     public Globales globales;
 
@@ -50,29 +59,74 @@ public class pedidohistoricoActivity extends AppCompatActivity {
     private List<opPedidoProveedor> lista_pedprov;
     private ctProveedor proveedor;
 
+
+    Button btnBuscar;
+    EditText editFechaIni,editFechaFin , editTotal;
+    private  int dia,mes,ano,hora,minutos;
+
+    private  String FechaIni , FechaFin;
+
+    static final int DATE_ID = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedidohistorico);
 
 
+
+
+
+
+        // Create a new instance of DatePickerDialog and return it
+
+        editFechaIni=(EditText) findViewById(R.id.editFechaIni);
+        editFechaFin=(EditText) findViewById(R.id.editFechaFin);
+        editTotal=(EditText) findViewById(R.id.editTotal);
+        btnBuscar=(Button)findViewById(R.id.btnBuscar);
+
+
+        final Calendar c= Calendar.getInstance();
+        dia=c.get(Calendar.DAY_OF_MONTH);
+        mes=c.get(Calendar.MONTH);
+        ano=c.get(Calendar.YEAR);
+
+        editFechaIni.setText(dia + "-" + (mes + 1) +"-"+ ano);
+
+        editFechaFin.setText(dia + "-" + (mes + 1) +"-"+ ano);
+
+        FechaIni= ano + "-" + String.format("%02d", (mes + 1)) +"-"+ String.format("%02d", dia);
+        FechaFin= ano + "-" + String.format("%02d", (mes + 1))  +"-"+ String.format("%02d", dia);
+
+
+        editFechaIni.setOnClickListener(this);
+
+        editFechaFin.setOnClickListener(this);
+
         proveedor = globales.g_ctProveedor;
 
         lvPedidos = (ListView) findViewById(R.id.lvPedidos);
         lista_pedprov = new ArrayList<opPedidoProveedor>();
 
-        getPedidos( proveedor.getiProveedor(),  globales.g_ctDomicilio.getiDomicilio()); //proveedor.getiProveedor());
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPedidos( proveedor.getiProveedor(),  globales.g_ctDomicilio.getiDomicilio(), FechaIni ,FechaFin); //proveedor.getiProveedor());
+            }
+        });
+
+
     }
 
 
 
 
-    public void getPedidos (int ipiProveedor , int ipiDomicilio){
+    public void getPedidos (int ipiProveedor , int ipiDomicilio , String FechaIni , String FechaFin){
         getmRequestQueue();
 
 
       //  String urlParams = String.format(url + "opPedidoProveedor?ipiProveedor=%1$s&ipcCuales=%2$s", ipiProveedor, "TODOS");
-        String urlParams = String.format(url + "opPedidoProveedor?ipiProveedor=%1$s&ipiDomicilio=%2$s&ipcCuales=%3$s", ipiProveedor, ipiDomicilio, "TODOS");
+        String urlParams = String.format(url + "ProvHistPedidos?ipiProveedor=%1$s&ipiDomicilio=%2$s&ipiFechaIni=%3$s&ipiFechaFin=%4$s", ipiProveedor, ipiDomicilio, FechaIni, FechaFin);
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -103,6 +157,18 @@ public class pedidohistoricoActivity extends AppCompatActivity {
                                     return new Integer(o2.getiPedido() ).compareTo(new Integer(o1.getiPedido()));
                                 }
                             });
+
+
+                            Double total =0.0 ;
+                            for (opPedidoProveedor obj :lista_pedprov){
+                                total = total + obj.getDeImporte().doubleValue();
+                            }
+
+                            Log.i("total",total.toString());
+
+                            editTotal.setText(String.valueOf(total));
+
+
                             adapter = new opPedProvConsulaAdapter(pedidohistoricoActivity.this, (ArrayList<opPedidoProveedor>) arrayPedProv);
                             lvPedidos.setAdapter(adapter);
 
@@ -216,4 +282,46 @@ public class pedidohistoricoActivity extends AppCompatActivity {
             Log.d("Volley",e.toString());
         }
     }
+
+
+
+
+
+
+    @Override
+    public void onClick(View v) {
+        if(v==editFechaIni){
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                    editFechaIni.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+
+
+
+                    FechaIni= year + "-" +  String.format("%02d", (monthOfYear + 1)) +"-"+   String.format("%02d", dayOfMonth) ;
+                }
+            } ,ano,mes,dia);
+            datePickerDialog.show();
+
+        }else if(v==editFechaFin){
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                    editFechaFin.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                    FechaFin= year + "-" +  String.format("%02d", (monthOfYear + 1)) +"-"+   String.format("%02d", dayOfMonth) ;
+                }
+            } ,ano,mes,dia);
+            datePickerDialog.show();
+        }
+
+    }
+
+
+
+
+
 }

@@ -44,22 +44,21 @@ import java.util.Map;
 public class InicioOpeActivity extends AppCompatActivity {
 
 
-
-
     public Globales globales;
 
     private static RequestQueue mRequestQueue;
     private String url = globales.URL;
 
-    private RadioGroup mRgAllButtons;
+    private RadioGroup rbComunidad;
+    private List<ctComisiones> listaComunidad;
+    private EditText txtOtraComunidad;
 
+    private RadioGroup rbTitlani;
+    private List<ctComisiones> listaTitlani;
+    private EditText txtOtraTitlani;
 
-    private List<ctComisiones> listaComision;
 
     private Button btnInicio;
-    private Button btnFin;
-
-    private EditText etAporta;
 
 
     public Integer viComision = 0;
@@ -68,13 +67,13 @@ public class InicioOpeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        mRgAllButtons   = (RadioGroup) findViewById(R.id.rb);
+        rbComunidad   = (RadioGroup) findViewById(R.id.rbComunidad);
+        txtOtraComunidad        = (EditText)   findViewById(R.id.txtOtraComunidad);
 
-        etAporta        = (EditText)   findViewById(R.id.etOtraComision);
+        rbTitlani   = (RadioGroup) findViewById(R.id.rbTitlatli);
+        txtOtraTitlani        = (EditText)   findViewById(R.id.txtOtratitlani);
 
         btnInicio = (Button) findViewById(R.id.btnAceptar);
-
-        // btnFin = (Button) findViewById(R.id.btnFin);
 
 
         btnInicio.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +84,8 @@ public class InicioOpeActivity extends AppCompatActivity {
         });
 
 
-
-        getComisiones();
+        getComisionesComunidad();
+        getComisionesTitlani();
     }
 
 
@@ -95,7 +94,7 @@ public class InicioOpeActivity extends AppCompatActivity {
 
         double vAportacion;
 
-        vAportacion = Double.parseDouble(etAporta.getText().toString());
+        vAportacion = Double.parseDouble(txtOtraComunidad.getText().toString());
 
 
 
@@ -218,7 +217,7 @@ public class InicioOpeActivity extends AppCompatActivity {
 
 
 
-    public void getComisiones (){
+    public void getComisionesComunidad (){
         getmRequestQueue();
 
 
@@ -244,9 +243,9 @@ public class InicioOpeActivity extends AppCompatActivity {
 
 
 
-                            listaComision = Arrays.asList(new Gson().fromJson(tt_ctComisiones.toString(), ctComisiones[].class));
+                            listaComunidad = Arrays.asList(new Gson().fromJson(tt_ctComisiones.toString(), ctComisiones[].class));
 
-                            CreaBotonesCom();
+                            CreaBotonesComunidad();
 
 
                         } catch (JSONException e) {
@@ -308,12 +307,12 @@ public class InicioOpeActivity extends AppCompatActivity {
 
 
 
-    public void CreaBotonesCom(){
+    public void CreaBotonesComunidad(){
 
 
 
 
-        Log.i("Botones","entro" + listaComision.size());
+        Log.i("Botones","entro" + listaComunidad.size());
 
         final int esmelada = Color.parseColor("#05F7D9");
         final int blanco = Color.parseColor("#FFFFFF");
@@ -321,7 +320,7 @@ public class InicioOpeActivity extends AppCompatActivity {
 
 
         int vxMod = 0, vyMod = 0, vCuantosMod = 0;
-        for(final ctComisiones objComisiones: listaComision){
+        for(final ctComisiones objComisiones: listaComunidad){
 
             Log.i("for" , objComisiones.getDeValor().toString());
             vCuantosMod = vCuantosMod + 1;
@@ -347,25 +346,179 @@ public class InicioOpeActivity extends AppCompatActivity {
                     viComision = objComisiones.getiComision();
 
                     if(objComisiones.getcComision().equals("OTRO")){
-                        etAporta.setEnabled(true);
-                        etAporta.setBackgroundColor(esmelada);
+                        txtOtraComunidad.setEnabled(true);
+                        txtOtraComunidad.setBackgroundColor(esmelada);
                     }else{
-                        etAporta.setEnabled(false);
-                        etAporta.setBackgroundColor(blanco);
+                        txtOtraComunidad.setEnabled(false);
+                        txtOtraComunidad.setBackgroundColor(blanco);
                     }
 
-                    etAporta.setText(objComisiones.getDeValor().toString());
+                    txtOtraComunidad.setText(objComisiones.getDeValor().toString());
 
 
                 }
             });
-            mRgAllButtons.addView(rdbtn);
+            rbComunidad.addView(rdbtn);
         }
 
 
 
 
     }
+
+
+    /*titlani*/
+
+    public void getComisionesTitlani (){
+        getmRequestQueue();
+
+
+        String urlParams = String.format(url + "ctComisiones?ipiPersona=%1$s", 3);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            JSONObject respuesta = response.getJSONObject("response");
+                            Log.i("respuesta--->", respuesta.toString());
+
+
+                            String Mensaje = respuesta.getString("opcError");
+                            Boolean Error = respuesta.getBoolean("oplError");
+                            JSONObject ds_opPedidoProveedor = respuesta.getJSONObject("tt_ctComisiones");
+
+                            JSONArray tt_ctComisiones  = ds_opPedidoProveedor.getJSONArray("tt_ctComisiones");
+
+
+
+                            listaTitlani = Arrays.asList(new Gson().fromJson(tt_ctComisiones.toString(), ctComisiones[].class));
+
+                            CreaBotonesTitlani();
+
+
+                        } catch (JSONException e) {
+
+                            AlertDialog.Builder myBuild = new AlertDialog.Builder(InicioOpeActivity.this);
+                            myBuild.setMessage("Error en la conversión de Datos. Vuelva a Intentar. " + e);
+                            myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR CONVERSION </font>"));
+                            myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+
+                                }
+                            });
+                            AlertDialog dialog = myBuild.create();
+                            dialog.show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        // TODO: Handle error
+                        Log.i("Error Respuesta", error.toString());
+                        AlertDialog.Builder myBuild = new AlertDialog.Builder(InicioOpeActivity.this);
+                        myBuild.setMessage("No se pudo conectar con el servidor. Vuelva a Intentar. " + error.toString());
+                        myBuild.setTitle(Html.fromHtml("<font color ='#FF0000'> ERROR RESPUESTA </font>"));
+                        myBuild.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        AlertDialog dialog = myBuild.create();
+                        dialog.show();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+        };
+        // Access the RequestQueue through your singleton class.
+        mRequestQueue.add(jsonObjectRequest);
+    }
+
+
+
+    public void CreaBotonesTitlani(){
+
+
+
+
+        Log.i("Botones","entro" + listaTitlani.size());
+
+        final int esmelada = Color.parseColor("#05F7D9");
+        final int blanco = Color.parseColor("#FFFFFF");
+
+
+
+        int vxMod = 0, vyMod = 0, vCuantosMod = 0;
+        for(final ctComisiones objComisiones: listaTitlani){
+
+            Log.i("for" , objComisiones.getDeValor().toString());
+            vCuantosMod = vCuantosMod + 1;
+            RadioButton rdbtn = new RadioButton(this);
+            if(objComisiones.getcComision().equals("OTRO")){
+                rdbtn.setText("Otro");
+            }else {
+                rdbtn.setText(objComisiones.getDeValor() + "%");
+            }
+
+            Drawable d = getResources().getDrawable(R.drawable.radiob);
+            rdbtn.setBackgroundDrawable(d);
+
+            rdbtn.setWidth(300);
+            rdbtn.setHeight(80);
+            rdbtn.setX(vxMod);
+            rdbtn.setY(vyMod);
+            vyMod = vyMod + 25;
+
+            rdbtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    viComision = objComisiones.getiComision();
+
+                    if(objComisiones.getcComision().equals("OTRO")){
+                        txtOtraTitlani.setEnabled(true);
+                        txtOtraTitlani.setBackgroundColor(esmelada);
+                    }else{
+                        txtOtraTitlani.setEnabled(false);
+                        txtOtraTitlani.setBackgroundColor(blanco);
+                    }
+
+                    txtOtraTitlani.setText(objComisiones.getDeValor().toString());
+
+
+                }
+            });
+            rbTitlani.addView(rdbtn);
+        }
+
+
+
+
+    }
+
+    /*titlani*/
 
     public void MuestraMensaje(String vcTitulo,  String vcMensaje){
         AlertDialog.Builder myBuild = new AlertDialog.Builder(InicioOpeActivity.this);

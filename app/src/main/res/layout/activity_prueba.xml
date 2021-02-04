@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.pedidohistoricoActivity">
+    tools:context=".activity.ConsultaPedActivity">
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 
@@ -27,20 +28,20 @@
                 android:gravity="center">
 
                 <EditText
-                    android:inputType="textPersonName"
+                   android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/editFechaIni"
                     android:hint="Fecha Inicial"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textIsSelectable="true"
-                    android:focusable="false"
-                    android:maxLines="1"
-                    android:imeOptions="actionNext"/>
+                    android:gravity="center"/>
 
-
+                <Button
+                    android:id="@+id/btnFechaIni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="..." />
             </LinearLayout>
 
             <LinearLayout
@@ -57,13 +58,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textIsSelectable="true"
-                    android:focusable="false"
-                    android:maxLines="1"
-                    android:imeOptions="actionNext"/>
+                    android:gravity="center"/>
 
-
+                <Button
+                    android:id="@+id/btnFechaFin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="..." />
 
             </LinearLayout>
 
@@ -78,54 +79,14 @@
 
                 <Button
                     android:text="Buscar"
-                    android:id="@+id/btnBuscar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"/>
-
-                <EditText
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editTotal"
-                    android:hint="Total"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-
-                    android:textIsSelectable="true"
-                    android:focusable="false"
-                    android:maxLines="1"
-                    android:imeOptions="actionNext"/>
             </LinearLayout>
 
 
-
-
-
         </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center">
-            <ListView
-                android:id="@+id/lvPedidos"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
-            </ListView>
-
-
-        </LinearLayout>
-
-
-
     </LinearLayout>
 
 </LinearLayout>

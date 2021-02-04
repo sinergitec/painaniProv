@@ -13,7 +13,9 @@ import java.util.List;
 public class Globales {
 
     //public static  String  URL = "http://189.151.197.158:8083/painal/rest/painalService/";
-    public static  String  URL = "http://192.168.1.102:8083/painal/rest/painalService/";
+    public static  String  URL = "http://189.151.164.201:8083/painal/rest/painalService/";
+
+
     //public static String URL = "http://189.151.190.161:8083/painal/rest/painalService/";
 
     public static ctUsuario g_ctUsuario = null;

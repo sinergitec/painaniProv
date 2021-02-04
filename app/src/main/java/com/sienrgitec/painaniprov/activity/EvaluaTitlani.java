@@ -121,7 +121,7 @@ public class EvaluaTitlani extends AppCompatActivity {
                     MuestraMensaje("Error", "Debes seleccionar un parametro para evaluar");
                     return;
                 }
-                MuestraMensaje("Aviso", "Hecho");
+               // MuestraMensaje("Aviso", "Hecho");
                 CreaEvaluacion();
             }
         });
@@ -265,6 +265,37 @@ public class EvaluaTitlani extends AppCompatActivity {
 
     public void CreaEvaluacion(){
         Log.e("Crea Evaluacion--> ","viPersona " + viPersona);
+
+
+        if(vdeCalificacion ==  null){
+            MuestraMensaje("Error", "Debes seleccionar una calificacion");
+            return;
+        }
+
+
+        boolean existe = false;
+        int id =0;
+        for (  opClienteEvalua obj :opClienteEvaluaList){
+            if (obj.getiEvalua() == viEvalua ){
+
+                obj.setcValor(vdeCalificacion.toString() + "0");
+                obj.setcObs(txtObsEvalua.getText().toString());
+                existe = true;
+                break;
+
+
+
+            }
+
+        }
+
+        if (existe){
+            Log.i("crea" , "ya existe una evaluacion" + viEvalua);
+            return;
+        }
+
+
+
 
         opClienteEvalua objNvaEvaluacion = new opClienteEvalua();
         objNvaEvaluacion.setiPedido(pedido.getiPedido());
