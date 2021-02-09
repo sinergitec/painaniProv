@@ -54,7 +54,7 @@ import java.util.TimerTask;
 public class HomeActivity extends AppCompatActivity {
 
 
-    private  Button btnBandeja;
+    private Button btnBandeja;
     private Button btnProductos;
     private Button btnPedXSurtir;
     private Button btnHistorico;

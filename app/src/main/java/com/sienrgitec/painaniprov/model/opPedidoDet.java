@@ -30,6 +30,7 @@ public class opPedidoDet {
     private String cUsuModificado;
     private Object id;
 
+
     public Integer getiPedido() {
         return iPedido;
     }

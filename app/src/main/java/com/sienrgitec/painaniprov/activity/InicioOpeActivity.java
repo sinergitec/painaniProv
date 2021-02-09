@@ -92,9 +92,15 @@ public class InicioOpeActivity extends AppCompatActivity {
     public void inicio(){
 
 
-        double vAportacion;
+        double comision ,propina;
 
-        vAportacion = Double.parseDouble(txtOtraComunidad.getText().toString());
+        comision = Double.parseDouble(txtOtraComunidad.getText().toString());
+
+        propina = Double.parseDouble(txtOtraTitlani.getText().toString());
+
+
+        Log.i("comision",  String.valueOf(comision));
+        Log.i("propina", String.valueOf(propina));
 
 
 
@@ -109,7 +115,8 @@ public class InicioOpeActivity extends AppCompatActivity {
         objDispProveedor.setDtFecha(null);
         objDispProveedor.setiDomicilio(globales.g_ctDomicilio.getiDomicilio());
         objDispProveedor.setiComision(viComision);
-        objDispProveedor.setDePropina(vAportacion);
+        objDispProveedor.setDeComision(comision);
+        objDispProveedor.setDePropina(propina);
         objDispProveedor.setDtCheckIn(null);
         objDispProveedor.setiCheckIn(0);
         objDispProveedor.setDtCheckOut(null);
@@ -221,8 +228,9 @@ public class InicioOpeActivity extends AppCompatActivity {
         getmRequestQueue();
 
 
-        String urlParams = String.format(url + "ctComisiones?ipiPersona=%1$s", 4);
 
+
+        String urlParams = String.format(url + "ctComisiones?ipiUnidad=%1$s&ipiPersona=%2$s", globales.g_ctProveedor.getiUnidad() , 4 );
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, urlParams, null, new Response.Listener<JSONObject>() {
@@ -373,7 +381,10 @@ public class InicioOpeActivity extends AppCompatActivity {
         getmRequestQueue();
 
 
-        String urlParams = String.format(url + "ctComisiones?ipiPersona=%1$s", 3);
+
+        Log.i("comision" , globales.g_ctProveedor.getiUnidad().toString() );
+
+        String urlParams = String.format(url + "ctComisiones?ipiUnidad=%1$s&ipiPersona=%2$s", globales.g_ctProveedor.getiUnidad() , 3  );
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -495,7 +506,7 @@ public class InicioOpeActivity extends AppCompatActivity {
             rdbtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    viComision = objComisiones.getiComision();
+                   // viComision = objComisiones.getiComision();
 
                     if(objComisiones.getcComision().equals("OTRO")){
                         txtOtraTitlani.setEnabled(true);

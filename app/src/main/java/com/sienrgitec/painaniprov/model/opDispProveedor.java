@@ -6,7 +6,9 @@ public class opDispProveedor {
     private Object dtFecha;
     private Integer iDomicilio;
     private Integer iComision;
+    private Double  deComision;
     private Double dePropina;
+
     private Object dtCheckIn;
     private Integer iCheckIn;
     private Object dtCheckOut;
@@ -99,5 +101,13 @@ public class opDispProveedor {
 
     public void setId(Object id) {
         this.id = id;
+    }
+
+    public Double getDeComision() {
+        return deComision;
+    }
+
+    public void setDeComision(Double deComision) {
+        this.deComision = deComision;
     }
 }

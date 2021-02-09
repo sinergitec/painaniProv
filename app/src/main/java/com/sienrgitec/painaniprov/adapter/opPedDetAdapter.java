@@ -65,7 +65,7 @@ public class opPedDetAdapter extends BaseAdapter {
          DecimalFormat FDPrecio = new DecimalFormat("00.00");
         DecimalFormat FDImporte = new DecimalFormat("00.00");
 
-          String  Precio = FDPrecio.format(lista.get(position).getDePrecioVta());
+          String  Precio = FDPrecio.format(lista.get(position).getDePrecioUnit());
 
 
            String Importe = FDImporte.format(lista.get(position).getDeImporte());
