@@ -154,7 +154,7 @@ public class HomeActivity extends AppCompatActivity {
         getDisponible(globales.g_ctProveedor.getiProveedor(),globales.g_ctDomicilio.getiDomicilio());
 
 
-       llamar();
+      // se comneto temporal llamar();
     }
 
     private void MenuHistorico() {

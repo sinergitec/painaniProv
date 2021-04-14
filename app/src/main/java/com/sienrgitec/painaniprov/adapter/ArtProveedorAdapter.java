@@ -2,6 +2,7 @@ package com.sienrgitec.painaniprov.adapter;
 
 import android.content.Context;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,12 @@ public class ArtProveedorAdapter extends BaseAdapter {
 
         TextView txtArticulo = (TextView) convertView.findViewById(R.id.txtArticulo);
         TextView txtDescripcion = (TextView) convertView.findViewById(R.id.txtDescripcion);
+
         TextView txtPrecioVta = (TextView) convertView.findViewById(R.id.txtPrecioVta);
+
+
+        Log.i("precio",lista.get(position).getDePrecioVtaPza().toString() );
+
 
 
         String FdePrecivta = new DecimalFormat("0.00").format(lista.get(position).getDePrecioVtaPza());

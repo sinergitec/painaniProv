@@ -123,6 +123,11 @@ public class titlaniActivity extends AppCompatActivity {
 
                             ctPainaniList = Arrays.asList(new Gson().fromJson(tt_ctPainal.toString(), ctPainani[].class));
 
+
+                           if ( ctPainaniList.isEmpty()){
+                               return;
+                           }
+
                             String nombreP   = ctPainaniList.get(0).getcNombre();
                             String apellidoP = ctPainaniList.get(0).getcApellidoPat();
                             String apellidoM = ctPainaniList.get(0).getcApellidoMat();
@@ -134,7 +139,7 @@ public class titlaniActivity extends AppCompatActivity {
                                 byte[] decodedString = Base64.decode(ctPainaniList.get(0).getbImagen(), Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                                 foto.setImageBitmap(decodedByte);
-                                }
+                            }
 
 
 

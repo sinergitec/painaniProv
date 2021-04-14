@@ -18,10 +18,10 @@ public class ctArtProveedor  implements Serializable {
     private Integer iMarca;
     private Boolean lActivo;
     private Object bImagen;
-    private Integer dePeso;
+    private Double dePeso;
     private Double deLargo;
-    private Integer deAncho;
-    private Integer deProfundo;
+    private Double deAncho;
+    private Double deProfundo;
     private String dtCreado;
     private String dtModificado;
     private String cUsuCrea;
@@ -158,11 +158,11 @@ public class ctArtProveedor  implements Serializable {
         this.bImagen = bImagen;
     }
 
-    public Integer getDePeso() {
+    public Double getDePeso() {
         return dePeso;
     }
 
-    public void setDePeso(Integer dePeso) {
+    public void setDePeso(Double dePeso) {
         this.dePeso = dePeso;
     }
 
@@ -174,19 +174,19 @@ public class ctArtProveedor  implements Serializable {
         this.deLargo = deLargo;
     }
 
-    public Integer getDeAncho() {
+    public Double getDeAncho() {
         return deAncho;
     }
 
-    public void setDeAncho(Integer deAncho) {
+    public void setDeAncho(Double deAncho) {
         this.deAncho = deAncho;
     }
 
-    public Integer getDeProfundo() {
+    public Double getDeProfundo() {
         return deProfundo;
     }
 
-    public void setDeProfundo(Integer deProfundo) {
+    public void setDeProfundo(Double deProfundo) {
         this.deProfundo = deProfundo;
     }
 
